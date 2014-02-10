@@ -1,9 +1,9 @@
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.sf.classifier4J.ClassifierException;
 import net.sf.classifier4J.SimpleClassifier;
@@ -12,8 +12,8 @@ public class SwotClassifier {
 
 	public static void main(String[] args) {
 		CategorisedDatum finalData = new CategorisedDatum();
-		RestaurantList restaurantList;
-		
+		RestaurantList restaurantList = null;
+
 		for (int i = 1; i <= 1030; i++) {
 			String json = "";
 			try {
@@ -23,8 +23,9 @@ public class SwotClassifier {
 				e.printStackTrace();
 			}
 			CategorisedDatum categorisedDatum = CategorisedDatum.fromJson(json);
+
 			finalData.datums.addAll(categorisedDatum.datums);
-			
+
 			try {
 				String restaurantListJson = readFileAsString("input/restaurantList.txt");
 				restaurantList = RestaurantList.fromJson(restaurantListJson);
@@ -33,21 +34,15 @@ public class SwotClassifier {
 			}
 		}
 
-		CategorisedDatum categorisedDatum = new CategorisedDatum();
-		while (finalData.datums.size() != 0) {
-			System.out.println("Message[" + finalData.datums.get(0).message + "]");
-			SimpleClassifier classifier = new SimpleClassifier();
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			System.out.print("Enter restaurant name : ");
-			String restaurantName = "";
-			try {
-				restaurantName = br.readLine();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			classifier.setSearchWord(restaurantName);
+		List<Datum> data = new ArrayList<Datum>(finalData.datums);
 
-			for (Datum datum : finalData.datums) {
+		CategorisedDatum categorisedDatum = null;
+		for (String restaurantName : restaurantList.restaurants) {
+			SimpleClassifier classifier = new SimpleClassifier();
+			classifier.setSearchWord(restaurantName);
+			categorisedDatum = new CategorisedDatum();
+
+			for (Datum datum : data) {
 				try {
 					if (classifier.isMatch(datum.message)) {
 						datum.restaurantName = restaurantName;
@@ -58,46 +53,18 @@ public class SwotClassifier {
 					e.printStackTrace();
 				}
 			}
-			System.out.println("Array Size[" + finalData.datums.size() + "]");
+
+			System.out.println("Remaining Size[" + finalData.datums.size()
+					+ "]");
 			System.out.println("Number of matches ["
 					+ categorisedDatum.datums.size()
 					+ "] for restaurant name [" + restaurantName + "]");
-		}
 
-		outputToFile(categorisedDatum);
+			outputToFile(restaurantName, categorisedDatum);
+			categorisedDatum = null;
+		}
+		outputToFile("__Remaining__Data__", finalData);
 	}
-	// public static void main(String[] args) {
-	// SimpleClassifier classifier = new SimpleClassifier();
-	// String restaurantName = "java";
-	// classifier.setSearchWord(restaurantName);
-	//
-	// CategorisedDatum finalData = new CategorisedDatum();
-	// for (int i = 1; i <= 1030; i++) {
-	// String json = "";
-	// try {
-	// System.out.println("Reading file[" + i + "]");
-	// json = readFileAsString("output" + i + ".txt");
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	//
-	// CategorisedDatum categorisedDatum = CategorisedDatum.fromJson(json);
-	// for (Datum datum : categorisedDatum.datums) {
-	// try {
-	// if (classifier.isMatch(datum.message)) {
-	// datum.restaurantName = restaurantName;
-	// finalData.datums.add(datum);
-	// }
-	// } catch (ClassifierException e) {
-	// e.printStackTrace();
-	// }
-	// }
-	// outputToFile(finalData);
-	// System.out.println("Number of matches [" + finalData.datums.size()
-	// + "] for restaurant name [" + restaurantName + "]");
-	// finalData.datums.clear();
-	// }
-	// }
 
 	private static String readFileAsString(String filename) throws IOException {
 		File file = new File(filename);
@@ -109,9 +76,10 @@ public class SwotClassifier {
 		return new String(data, "UTF-8");
 	}
 
-	private static void outputToFile(CategorisedDatum categorisedDatum) {
+	private static void outputToFile(String filename,
+			CategorisedDatum categorisedDatum) {
 		try {
-			FileWriter writer = new FileWriter("categorisedOutput.txt");
+			FileWriter writer = new FileWriter("output/" + filename + ".txt");
 			writer.append(categorisedDatum.toJson());
 			writer.append('\n');
 			writer.flush();
