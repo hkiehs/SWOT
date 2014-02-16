@@ -3,7 +3,6 @@ package com.parse.starter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -25,10 +24,10 @@ public class ParseStarterProjectActivity extends Activity {
 		StringBuilder json = readFile();
 		String jsonString = json.toString();
 		Log.i(DEBUG_TAG, jsonString);
-		Restaurant[] restaurants = new Gson().fromJson(jsonString, Restaurant[].class);
+		ParseRestaurant[] restaurants = new Gson().fromJson(jsonString, ParseRestaurant[].class);
 
 		ParseRestaurant parseRestaurant = new ParseRestaurant();
-		for (Restaurant restaurant : restaurants) {
+		for (ParseRestaurant restaurant : restaurants) {
 			parseRestaurant = new ParseRestaurant();
 
 			parseRestaurant.setName(restaurant.name);

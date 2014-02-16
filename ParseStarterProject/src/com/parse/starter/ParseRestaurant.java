@@ -5,6 +5,19 @@ import com.parse.ParseObject;
 @ParseClassName("Restaurant")
 public class ParseRestaurant extends ParseObject {
 
+	public String name;
+	public String address;
+	public String type;
+	public String timing;
+	public String phoneNumber;
+	public double latitude;
+	public double longitude;
+	public double rating;
+	public int reviews;
+	public int likes;
+	public int range;
+	public String highights;
+
 	public ParseRestaurant() {
 		// A default constructor is required.
 	}
