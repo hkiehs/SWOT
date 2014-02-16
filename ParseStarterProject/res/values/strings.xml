@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="hello">Hello World, ParseStarterProjectActivity!</string>
     <string name="app_name">ParseStarterProject</string>
     <string name="parse_app_id">jt37lHMgaEMO24HdH9R7E3WCbLexMO4FiQbiQjnu</string>
     <string name="parse_client_key">Z43Q2Nq4F92WHp6ntSLY8lqjQ9Lm7BLzqPcIzt1I</string>
+
 </resources>
