@@ -44,7 +44,6 @@ public class ParseStarterProjectActivity extends Activity {
 			parseRestaurant.setHighights(restaurant.highights);
 
 			parseRestaurant.saveInBackground(new SaveCallback() {
-
 				@Override
 				public void done(ParseException e) {
 					if (e == null) {
@@ -53,9 +52,7 @@ public class ParseStarterProjectActivity extends Activity {
 						Log.i(DEBUG_TAG, "Error[" + e.getMessage() + "]");
 					}
 				}
-
 			});
-
 			parseRestaurant = null;
 		}
 

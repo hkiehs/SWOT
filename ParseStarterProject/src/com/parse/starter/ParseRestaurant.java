@@ -4,7 +4,19 @@ import com.parse.ParseObject;
 
 @ParseClassName("Restaurant")
 public class ParseRestaurant extends ParseObject {
-
+	public static final String NAME = "name";
+	public static final String ADDRESS = "address";
+	public static final String TYPE = "type";
+	public static final String TIMING = "timing";
+	public static final String PHONE_NUMBER = "phoneNumber";
+	public static final String LATITUDE = "latitude";
+	public static final String LONGITUDE = "longitude";
+	public static final String RATING = "rating";
+	public static final String REVIEW = "review";
+	public static final String LIKE = "like";
+	public static final String RANGE = "range";
+	public static final String HIGHLIGHT = "highight";
+	
 	public String name;
 	public String address;
 	public String type;
@@ -23,104 +35,104 @@ public class ParseRestaurant extends ParseObject {
 	}
 
 	public String getName() {
-		return getString("name");
+		return getString(NAME);
 	}
 
 	public String getAddress() {
-		return getString("address");
+		return getString(ADDRESS);
 	}
 
 	public String getType() {
-		return getString("type");
+		return getString(TYPE);
 	}
 
 	public String getTiming() {
-		return getString("timing");
+		return getString(TIMING);
 	}
 
 	public String getPhoneNumber() {
-		return getString("phoneNumber");
+		return getString(PHONE_NUMBER);
 	}
 
 	public double getLatitude() {
-		return getDouble("latitude");
+		return getDouble(LATITUDE);
 	}
 
 	public double getLongitude() {
-		return getDouble("longitude");
+		return getDouble(LONGITUDE);
 	}
 
 	public double getRating() {
-		return getDouble("rating");
+		return getDouble(RATING);
 	}
 
 	public int getReviews() {
-		return getInt("reviews");
+		return getInt(REVIEW);
 	}
 
 	public int getLikes() {
-		return getInt("likes");
+		return getInt(LIKE);
 	}
 
 	public int getRange() {
-		return getInt("range");
+		return getInt(RANGE);
 	}
 
 	public String getHighights() {
-		return getString("highights");
+		return getString(HIGHLIGHT);
 	}
 
 	public void setName(String name) {
 		if (name != null)
-			put("name", name);
+			put(NAME, name);
 	}
 
 	public void setAddress(String address) {
 		if (address != null)
-			put("address", address);
+			put(ADDRESS, address);
 	}
 
 	public void setType(String type) {
 		if (type != null)
-			put("type", type);
+			put(TYPE, type);
 	}
 
 	public void setTiming(String timing) {
 		if (timing != null)
-			put("timing", timing);
+			put(TIMING, timing);
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
 		if (phoneNumber != null)
-			put("phoneNumber", phoneNumber);
+			put(PHONE_NUMBER, phoneNumber);
 	}
 
 	public void setLatitude(double latitude) {
-		put("latitude", latitude);
+		put(LATITUDE, latitude);
 	}
 
 	public void setLongitude(double longitude) {
-		put("longitude", longitude);
+		put(LONGITUDE, longitude);
 	}
 
 	public void setRating(double rating) {
-		put("rating", rating);
+		put(RATING, rating);
 	}
 
 	public void setReviews(int reviews) {
-		put("reviews", reviews);
+		put(REVIEW, reviews);
 	}
 
 	public void setLikes(int likes) {
-		put("likes", likes);
+		put(LIKE, likes);
 	}
 
 	public void setRange(int range) {
-		put("range", range);
+		put(RANGE, range);
 	}
 
 	public void setHighights(String highights) {
 		if (highights != null)
-			put("highights", highights);
+			put(HIGHLIGHT, highights);
 	}
 }
