@@ -44,12 +44,13 @@ public class SwotClassifier {
 
 			for (Datum datum : data) {
 				try {
-					if (classifier.isMatch(datum.message)) {
+//					if (classifier.isMatch(datum.message)) {
+					if (classifier.isMatch(95.0)) {
 						datum.restaurantName = restaurantName;
 						categorisedDatum.datums.add(datum);
 						finalData.datums.remove(datum);
 					}
-				} catch (ClassifierException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -79,7 +80,7 @@ public class SwotClassifier {
 	private static void outputToFile(String filename,
 			CategorisedDatum categorisedDatum) {
 		try {
-			FileWriter writer = new FileWriter("output/" + filename + ".txt");
+			FileWriter writer = new FileWriter(filename + ".txt");
 			writer.append(categorisedDatum.toJson());
 			writer.append('\n');
 			writer.flush();
