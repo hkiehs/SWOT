@@ -35,6 +35,7 @@ public class ParseStarterProjectActivity extends Activity {
 
 		ParseAnalytics.trackAppOpened(getIntent());
 		String restaurant = "restaurant_json.txt";
+		pushRestaurantAndReviews();
 
 	}
 
@@ -53,52 +54,52 @@ public class ParseStarterProjectActivity extends Activity {
 		return stringBuilder.toString();
 	}
 
-	private void pushRestaurantAndReviews(String restaurantListFile) {
-		// read the restaurant list line by line
-		// upload the json
-
-		restaurantNames = new ArrayList<String>();
-
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(restaurantListFile));
-			String filename;
-			while ((filename = br.readLine()) != null) {
-				restaurantNames.add(filename);
-			}
-			br.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println("file read complete...");
-
-		String name1 = "B.B.Q.txt";
-		String name2 = "Biryani.txt";
-		String name3 = "Broast.txt";
-		String name4 = "Burger.txt";
-		String name5 = "Chinese.txt";
-		String name6 = "Haleem.txt";
-		String name7 = "Juice.txt";
-		String name8 = "Nihari.txt";
-		String name9 = "Pan.txt";
-		String name10 = "Pizza.txt";
-		String name11 = "Roll.txt";
-		String name12 = "Sajji.txt";
-		String name13 = "Boat Basin.txt";
-
-		List<String> filteredRestaurantNames = new ArrayList<String>();
-		for (String restaurantName : restaurantNames) {
-			// ignore dishes
-			if (restaurantName.equalsIgnoreCase(name1) || restaurantName.equalsIgnoreCase(name2) || restaurantName.equalsIgnoreCase(name3)
-					|| restaurantName.equalsIgnoreCase(name4) || restaurantName.equalsIgnoreCase(name5) || restaurantName.equalsIgnoreCase(name6)
-					|| restaurantName.equalsIgnoreCase(name7) || restaurantName.equalsIgnoreCase(name8) || restaurantName.equalsIgnoreCase(name9)
-					|| restaurantName.equalsIgnoreCase(name10) || restaurantName.equalsIgnoreCase(name11) || restaurantName.equalsIgnoreCase(name12)
-					|| restaurantName.equalsIgnoreCase(name13)) {
-			} else {
-				filteredRestaurantNames.add(restaurantName);
-			}
-		}
-		restaurantNames = null;
-		restaurantNames = new ArrayList<String>(filteredRestaurantNames);
+	private void pushRestaurantAndReviews() {
+//		// read the restaurant list line by line
+//		// upload the json
+//
+//		restaurantNames = new ArrayList<String>();
+//
+//		try {
+//			BufferedReader br = new BufferedReader(new FileReader(restaurantListFile));
+//			String filename;
+//			while ((filename = br.readLine()) != null) {
+//				restaurantNames.add(filename);
+//			}
+//			br.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("file read complete...");
+//
+//		String name1 = "B.B.Q.txt";
+//		String name2 = "Biryani.txt";
+//		String name3 = "Broast.txt";
+//		String name4 = "Burger.txt";
+//		String name5 = "Chinese.txt";
+//		String name6 = "Haleem.txt";
+//		String name7 = "Juice.txt";
+//		String name8 = "Nihari.txt";
+//		String name9 = "Pan.txt";
+//		String name10 = "Pizza.txt";
+//		String name11 = "Roll.txt";
+//		String name12 = "Sajji.txt";
+//		String name13 = "Boat Basin.txt";
+//
+//		List<String> filteredRestaurantNames = new ArrayList<String>();
+//		for (String restaurantName : restaurantNames) {
+//			// ignore dishes
+//			if (restaurantName.equalsIgnoreCase(name1) || restaurantName.equalsIgnoreCase(name2) || restaurantName.equalsIgnoreCase(name3)
+//					|| restaurantName.equalsIgnoreCase(name4) || restaurantName.equalsIgnoreCase(name5) || restaurantName.equalsIgnoreCase(name6)
+//					|| restaurantName.equalsIgnoreCase(name7) || restaurantName.equalsIgnoreCase(name8) || restaurantName.equalsIgnoreCase(name9)
+//					|| restaurantName.equalsIgnoreCase(name10) || restaurantName.equalsIgnoreCase(name11) || restaurantName.equalsIgnoreCase(name12)
+//					|| restaurantName.equalsIgnoreCase(name13)) {
+//			} else {
+//				filteredRestaurantNames.add(restaurantName);
+//			}
+//		}
+//		restaurantNames = null;
+//		restaurantNames = new ArrayList<String>(filteredRestaurantNames);
 
 		// TODO: read x, y, z files and merge them in one file also put them in
 		// the output folder with one name
@@ -109,16 +110,16 @@ public class ParseStarterProjectActivity extends Activity {
 		String jsonArray = readFile("SalmanNewRestaurantList.txt");
 		// create object array object
 		Restaurant[] restaurants = new Gson().fromJson(jsonArray, Restaurant[].class);
-		for (Restaurant restaurant : restaurants) {
-			System.out.println("RestaurantName[" + restaurant.name + "]");
-			
-		}
+//		for (Restaurant restaurant : restaurants) {
+//			System.out.println("RestaurantName[" + restaurant.name + "]");
+//		}
 		
 		ParseRestaurant parseRestaurant = null;
 		for (Restaurant salmanNewRestaurant : restaurants) {
 			classifier = new SimpleClassifier();
 			classifier.setSearchWord(salmanNewRestaurant.name);
 
+			System.out.println("Pused restaurant [" + salmanNewRestaurant.name + "]");
 			// TODO: insert restaurant and get the primary id
 			parseRestaurant = pushRestaurant(salmanNewRestaurant); // get
 																		// the
@@ -129,6 +130,7 @@ public class ParseStarterProjectActivity extends Activity {
 				public void done(ParseRestaurant parseRestaurant, ParseException e) {
 					if (e == null) {
 						final String objectId = parseRestaurant.getObjectId();
+						System.out.println("********** ObjectId[" + objectId + "] ******************"); 
 						ParsePost parsePost = null;
 
 						for (String name : restaurantNames) {
