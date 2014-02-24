@@ -75,6 +75,8 @@ public class ProcessRestaurantJson extends IntentService {
 							});
 							parsePost = null;
 						}
+					} else {
+						Log.i(DEBUG_TAG, "False [" + reviewFileName + "] != [" + result.name + "]");
 					}
 				} catch (ClassifierException e1) {
 					e1.printStackTrace();

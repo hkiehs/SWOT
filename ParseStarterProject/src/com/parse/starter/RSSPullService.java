@@ -6,21 +6,16 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.ParsePost;
 import model.ParseRestaurant;
-import net.sf.classifier4J.ClassifierException;
 import net.sf.classifier4J.SimpleClassifier;
-import utility.CategorisedDatum;
-import utility.Datum;
 import utility.Restaurant;
+import android.app.IntentService;
+import android.content.Intent;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.parse.ParseException;
 import com.parse.SaveCallback;
-
-import android.app.IntentService;
-import android.content.Intent;
-import android.util.Log;
 
 public class RSSPullService extends IntentService {
 	private static final String DEBUG_TAG = "ParseStarterProjectActivity";
