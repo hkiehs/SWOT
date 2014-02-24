@@ -1,4 +1,4 @@
-package Utility;
+package utility;
 import com.google.gson.Gson;
 
 public class Restaurant {

@@ -1,4 +1,6 @@
 package model;
+import utility.Restaurant;
+
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
@@ -134,5 +136,22 @@ public class ParseRestaurant extends ParseObject {
 	public void setHighights(String highights) {
 		if (highights != null)
 			put(HIGHLIGHT, highights);
+	}
+	
+	public static ParseRestaurant createParseObject(Restaurant restaurant) {
+		ParseRestaurant parseRestaurant = new ParseRestaurant();
+		parseRestaurant.setName(restaurant.name);
+		parseRestaurant.setAddress(restaurant.address);
+		parseRestaurant.setType(restaurant.type);
+		parseRestaurant.setTiming(restaurant.timing);
+		parseRestaurant.setPhoneNumber(restaurant.phoneNumber);
+		parseRestaurant.setLatitude(restaurant.latitude);
+		parseRestaurant.setLongitude(restaurant.longitude);
+		parseRestaurant.setRating(restaurant.rating);
+		parseRestaurant.setReviews(restaurant.reviews);
+		parseRestaurant.setLikes(restaurant.likes);
+		parseRestaurant.setRange(restaurant.range);
+		parseRestaurant.setHighights(restaurant.highights);
+		return parseRestaurant;
 	}
 }

@@ -1,5 +1,7 @@
 package model;
 
+import utility.Datum;
+
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
@@ -118,6 +120,21 @@ public class ParsePost extends ParseObject {
 	public void setIcon(String icon) {
 		if (icon != null)
 			put(LINK, icon);
+	}
+	
+	public static ParsePost createParseObject(Datum datum ,String objectId) {
+		ParsePost parsePost = new ParsePost();
+		parsePost.setId(datum.id);
+		parsePost.setMessage(datum.message);
+		parsePost.setType(datum.type);
+		parsePost.setLikes(datum.likes.data.size());
+		parsePost.setPicture(datum.picture);
+		parsePost.setLink(datum.link);
+		parsePost.setIcon(datum.icon);
+		parsePost.setFromId(datum.from.id);
+		parsePost.setFromName(datum.from.name);
+		parsePost.setRestaurantId(objectId);
+		return parsePost;
 	}
 
 }
