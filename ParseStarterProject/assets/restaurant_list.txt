@@ -1,0 +1,419 @@
+14th Street Pizza Co..txt
+14th Street.txt
+A-One Snacks.txt
+A-One.txt
+Afridi Inn.txt
+After Eight Restaurant.txt
+After Eight.txt
+Al Bustan, Sheraton.txt
+Al Habib Restaurant.txt
+Al Habib.txt
+Al Rehmat Restaurant.txt
+Al Rehmat.txt
+Al Sajjad.txt
+Al-Sajjad Restaurant.txt
+Ambala food.txt
+Ambala.txt
+Anwar Baloch.txt
+Arabian Nights.txt
+Arizona Grill.txt
+Arizona.txt
+Atrium Cinemas.txt
+Atrium Mall.txt
+Avari Towers.txt
+Avari.txt
+B.B.Q.txt
+Baan Thai.txt
+Baithak.txt
+Ban Thai.txt
+base rock cafe.txt
+BBQ Tonight.txt
+BBQ Xpress Karachi.txt
+Bella Vita.txt
+BHOLU.txt
+Biryani of the Seas.txt
+Biryani.txt
+Bistro 76.txt
+Boat Basin Clifton.txt
+Boat Basin.txt
+Bolan Sajji.txt
+Bombay Chowpatty.txt
+Boti.txt
+BOTS.txt
+Bovi Chic.txt
+Bovichic.txt
+breakfast.txt
+Broast.txt
+Bumzee's.txt
+Bundoo Khan.txt
+Bunkabab.txt
+Burger Inc..txt
+Burger King Pakistan.txt
+Burger King.txt
+Burger.txt
+Butlers Chocolate Cafe - Pakistan.txt
+Butlers.txt
+Cactus.txt
+Cafe 9.txt
+Cafe 44.txt
+Cafe 76.txt
+Cafe Alyanto.txt
+Cafe Aylanto.txt
+Cafe Blue Ginger.txt
+Cafe Clifton.txt
+Cafe Coffee Day.txt
+Cafe DownTown.txt
+Cafe Flo.txt
+Cafe forty four.txt
+Cafe Frontier.txt
+Cafe Fusion.txt
+cafe genova.txt
+Cafe Koel.txt
+cafe lazeez.txt
+Cafe Mazeh.txt
+cafe mist.txt
+cafe ole.txt
+Cafe Pink Cadillac.txt
+Cafe Riverwood.txt
+Cafe Studio.txt
+Cafe zero degree entertainment lounge.txt
+Cafe Zero Degree.txt
+Cafe Zouk.txt
+Cafeela.txt
+California Pizza.txt
+Canton Chinese Cuisine.txt
+Capsicum.txt
+Chaat.txt
+Chacha Jee.txt
+Chai Master.txt
+chai.txt
+Chairman mao.txt
+Charcoal BBQ & Grill.txt
+Charcoal BBQ n Grill.txt
+Charcoal Grill.txt
+Charcoal.txt
+Chargha.txt
+Chatkharay.txt
+Chatterbox Cafe.txt
+chatterbox.txt
+Cheeky Joe's - Hyderi, Karachi.txt
+Chick a Zee.txt
+China House.txt
+China Kitchen.txt
+China Town.txt
+Chinese Restaurant.txt
+Chinese.txt
+Chinivini.txt
+Chocolicious.txt
+Chowmein.txt
+Cinnabon Pakistan.txt
+Classifier4J-0.6.jar
+Club Genova.txt
+Coffee.txt
+Cool Inn.txt
+Copper Kettle.txt
+courtyard cafe.txt
+Crab.txt
+Creek Inn.txt
+Dahi bare.txt
+Damascus.txt
+Defence Authority Creek Club.txt
+Delfrio.txt
+Deli off.txt
+DELICIO.txt
+Delicious Food.txt
+Delish Diner.txt
+Dera,Boat Basin.txt
+Dera.txt
+Desi Grill.txt
+Dessert.txt
+Dhoraji.txt
+Dil Pasand.txt
+Dine One.txt
+Dinner.txt
+Disco Bakery.txt
+Dolmen City Mall.txt
+Domino's Pizza.txt
+Domino's.txt
+Dunkin Donut.txt
+Dynasty.txt
+Eat-a-Boo.txt
+Eatfit.txt
+Eaton.txt
+Elbow Room.txt
+Ensemble.txt
+Entertainment.txt
+ESPRESSO.txt
+Estrela .txt
+Euphoria cafe.txt
+Euphoria.txt
+Evolution Restaurant.txt
+Expresso.txt
+Faluda.txt
+Fatburger Pakistan.txt
+Fatburger.txt
+Fish Point.txt
+Fish.txt
+Food centre.txt
+Food Court.txt
+Food Mania.txt
+Food Street.txt
+Foresters house of grill.txt
+Forty 4.txt
+Forty4 Restaurant.txt
+Fried rice.txt
+Fuchsia.txt
+fujiyama.txt
+Fuschia.txt
+Fusion Lounge.txt
+Gazebo.txt
+Gelato Affair.txt
+Genova.txt
+Ghaffar Kabab House.txt
+Ginsoy - Extreme Chinese.txt
+Ginsoy.txt
+Gon Pacci.txt
+Gourmet Burger Company.txt
+Gracious.txt
+Grill House.txt
+gson-2.2.4.jar
+Gulberg.txt
+Gun Smoke.txt
+H2O.txt
+Haleem Center.txt
+Haleem.txt
+Halwa puri.txt
+Hardee.txt
+Hardee's.txt
+Hardees.txt
+Hobnob Cafe.txt
+Hook Line & Sinker - Seafood Restaurant.txt
+Hookline & Sinker.txt
+Hot & Spicy.txt
+Hot Bite.txt
+Hot n Pepper.txt
+Hot N Roll.txt
+Hot N Spicy.txt
+Hot Spot.txt
+Hui Wan.txt
+Hyder's.txt
+Hyperstar Karachi.txt
+Ice & Spice.txt
+Ice cream.txt
+Ice n Spice.txt
+Indulge.txt
+Indus Foods.txt
+Jade Garden.txt
+Jans Broast.txt
+Jason's Steak House.txt
+Jason's Steakhouse.txt
+Javed.txt
+Johnny Rockets Pakistan.txt
+Juice.txt
+K.F.C.txt
+Kabab.txt
+Kahva, Cafe & grill.txt
+Kahva.txt
+Kamameshi.txt
+Karachi Broast.txt
+Karachi Foods.txt
+Karachi Haleem.txt
+Karhai.txt
+Katakat.txt
+Kaybee.txt
+Kaybees.txt
+KBC Restaurant.txt
+KFC.txt
+Khan Broast.txt
+Khanji.txt
+Khausa.txt
+Kings & Queens.txt
+Koel Cafe.txt
+Kolachi Restaurant.txt
+Kolachi.txt
+Kowloon Chinese.txt
+Koyla.txt
+Kush.txt
+Lal Qila Restaurant Karachi.txt
+LALQILA.txt
+Lals.txt
+Lasania.txt
+Latte Lounge.txt
+Le Grand - Fine Dining & Sports Lounge.txt
+Legrand Sports Lounge.txt
+Little China.txt
+London Fries.txt
+lunch.txt
+Macdonald.txt
+Macdonalds.txt
+Madina Hotel.txt
+Madni Biryani.txt
+Mahi Seafood.txt
+Manchurian.txt
+Marriage Bureau.txt
+Master Juice.txt
+Mazeh.txt
+Mc Donalds.txt
+McDonald.txt
+McDonald's.txt
+Mcdonalds.txt
+Mealicious.txt
+Mehran Sajji.txt
+Mei Kong.txt
+MILANO.txt
+Ming Court.txt
+Mirage.txt
+Mirchi.txt
+Mirchili.txt
+Miss Hen.txt
+Momo's Cafe.txt
+Montecristo.txt
+MYOB.txt
+N'eco's Natural Store and Cafe.txt
+N'ecos.txt
+Nando's.txt
+Nandos Clifton.txt
+Nandos.txt
+Nawab.txt
+Nehari Inn.txt
+Nihari Inn.txt
+Nihari.txt
+Noorani Grill.txt
+Noorani Kabab House.txt
+Ocoa.txt
+OGrill.txt
+Oishi Sushi.txt
+Olivetto.txt
+ONE POUND FISH.txt
+OPTP.txt
+ORRERY.txt
+Pan.txt
+Pane & Amore.txt
+Pani puri.txt
+PANTRY.txt
+Pappa Roti.txt
+Papparoti Pakistan.txt
+Park Tower.txt
+Pearl Continental, Karachi.txt
+Pearl Continental.txt
+Peking.txt
+Peshawari Ice Cream.txt
+Pie in the Sky.txt
+Pink Cadillac.txt
+Pizza Hut - Pakistan.txt
+Pizza Hut Zamzama.txt
+Pizza Hut.txt
+Pizza King.txt
+Pizza Max Pakistan.txt
+Pizza Max.txt
+Pizza n Pasta.txt
+Pizza One.txt
+Pizza Pizza.txt
+Pizza Point.txt
+Pizza.txt
+Pizzeria.txt
+Pompei Restaurant.txt
+Pompei Station.txt
+Pompei.txt
+Port Grand - Karachi.txt
+Port Grand (Official Page).txt
+Port Grand.txt
+Prawn.txt
+Pukar Foods.txt
+Pulao.txt
+Purple Haze.txt
+Qasr Al Nakheel.txt
+Quetta Alamgir Hotel.txt
+Rabri.txt
+Raj Rasoi Restaurant.txt
+Raj Rasoi.txt
+Rangoli at Arena.txt
+Rangoli.txt
+Red Apple.txt
+Red Emperor - China Bistro.txt
+Red Emperor China Bistro.txt
+Rehmat E Shereen.txt
+Riding Hood.txt
+Riverwood.txt
+Road Side Cafe.txt
+Roasters.txt
+Roll.txt
+Rowtisserie.txt
+Royal Ice And Spice.txt
+Royal Taste Pizza.txt
+S.Abdul Khaliq's Mithai & BakeShop.txt
+Saddar.txt
+Sajjad Restaurant.txt
+Sajjad.txt
+Sajji.txt
+Salman Khan..txt
+Salt 'n' Pepper Village.txt
+Sam's Place - Karachi.txt
+Sattar Buksh.txt
+Sattar Bux.txt
+Sea food.txt
+Shaheen Shinwari.txt
+Shashlik.txt
+shawarma.txt
+Sheesha.txt
+Shinwari B.B.Q.txt
+Shinwari BBQ.txt
+Shinwari.txt
+Shrimp.txt
+Silver Spoon.txt
+Sindh Club.txt
+Singaporian Rice.txt
+Slush.txt
+Soldier Bazar.txt
+Soup.txt
+Spicy Cafe.txt
+Spicy Chicken Hut.txt
+Spicy Tonight.txt
+Spinzer.txt
+Steak.txt
+Student Biryani.txt
+Studio Cafe..txt
+Studio Cafe.txt
+Studio.txt
+Subway.txt
+Sugar Frenzy.txt
+Supar.txt
+T2F.txt
+Taco El Paso.txt
+Tai Pan.txt
+Tandoori hut.txt
+tea.txt
+TGI Fridays.txt
+The Burger Factory Pakistan.txt
+The Burger Shack.txt
+The Cakery.txt
+The Corance.txt
+The Deli.txt
+The New York Pizza.txt
+The Noodle House Dolmen City.txt
+The Noodle House Pakistan.txt
+The Noodle House.txt
+The Ocean Mall.txt
+The Pakistani at Sheraton.txt
+The Pakistani.txt
+The Patio.txt
+The Riding Hood Bakery Cafe.txt
+The Riding Hood Bakery.txt
+The Seafood.txt
+The Yachtsmen.txt
+Thyme Restaurant.txt
+Tikka.txt
+Tipu Burger.txt
+Usmania Restaurant.txt
+Village restaurant.txt
+W f.txt
+WALL.txt
+Xander's.txt
+Yemek.txt
+Yuan Tung.txt
+Zahid Nehari.txt
+Zahid Nihari.txt
+Zameer Ansari BBQ.txt
+Zameer Ansari.txt
+Zero degree.txt
+Zindagi.txt

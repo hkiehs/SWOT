@@ -1,5 +1,6 @@
 package com.parse.starter;
 
+import model.ParseRestaurant;
 import android.app.Application;
 
 import com.parse.Parse;

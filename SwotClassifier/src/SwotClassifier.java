@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.classifier4J.ClassifierException;
 import net.sf.classifier4J.SimpleClassifier;
 
 public class SwotClassifier {
