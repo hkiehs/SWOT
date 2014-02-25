@@ -58,12 +58,12 @@ public class ProcessRestaurantJson extends IntentService {
 					if (classifier.isMatch(result.name)) {
 						Log.i(DEBUG_TAG, "*Match* :: Restaurant name [" + result.name + "]");
 						// read and post data to post table
-						String reviewFileJson = readFile("/review/" + reviewFileName);
+						String reviewFileJson = readFile("reviews/" + reviewFileName + ".txt");
 						CategorisedDatum categorisedDatum = CategorisedDatum.fromJson(reviewFileJson);
 						ParsePost parsePost = null;
 						for (Datum datum : categorisedDatum.datums) {
 							parsePost = ParsePost.createParseObject(datum, result.objectId);
-							parsePost.saveInBackground(new SaveCallback() {
+							parsePost.saveEventually(new SaveCallback() {
 								@Override
 								public void done(ParseException e) {
 									if (e == null) {
@@ -75,6 +75,7 @@ public class ProcessRestaurantJson extends IntentService {
 							});
 							parsePost = null;
 						}
+						
 					} else {
 						Log.i(DEBUG_TAG, "False [" + reviewFileName + "] != [" + result.name + "]");
 					}
@@ -85,7 +86,6 @@ public class ProcessRestaurantJson extends IntentService {
 		}
 
 		try {
-			Log.i(DEBUG_TAG, "Sleeping :");
 			Thread.sleep(3600000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();

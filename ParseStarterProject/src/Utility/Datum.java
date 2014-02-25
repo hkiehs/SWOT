@@ -4,7 +4,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.parse.ParseObject;
 
-public class Datum extends ParseObject {
+public class Datum {
 
 	public String id;
 	public From from;
@@ -17,6 +17,9 @@ public class Datum extends ParseObject {
 	public String picture;
 	public String link;
 	public String icon;
+
+	public Datum() {
+	}
 
 	public class From {
 		public String name;

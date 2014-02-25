@@ -1,6 +1,7 @@
 package model;
 
 import utility.Datum;
+import utility.Datum.Likes;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
@@ -103,8 +104,11 @@ public class ParsePost extends ParseObject {
 			put(TYPE, type);
 	}
 
-	public void setLikes(int likes) {
-		put(LIKE, likes);
+	public void setLikes(Likes likes) {
+		if ((likes != null) && (likes.data != null))
+			put(LIKE, likes.data.size());
+		else
+			put(LIKE, 0);
 	}
 
 	public void setPicture(String picture) {
@@ -127,7 +131,7 @@ public class ParsePost extends ParseObject {
 		parsePost.setId(datum.id);
 		parsePost.setMessage(datum.message);
 		parsePost.setType(datum.type);
-		parsePost.setLikes(datum.likes.data.size());
+		parsePost.setLikes(datum.likes);
 		parsePost.setPicture(datum.picture);
 		parsePost.setLink(datum.link);
 		parsePost.setIcon(datum.icon);

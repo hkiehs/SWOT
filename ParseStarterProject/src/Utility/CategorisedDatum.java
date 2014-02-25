@@ -5,10 +5,9 @@ import java.util.List;
 import com.google.gson.Gson;
 
 public class CategorisedDatum {
-	public List<Datum> datums;
+	public List<Datum> datums = new ArrayList<Datum>();;
 
 	public CategorisedDatum() {
-		datums = new ArrayList<Datum>();
 	}
 
 	public static CategorisedDatum fromJson(String json) {

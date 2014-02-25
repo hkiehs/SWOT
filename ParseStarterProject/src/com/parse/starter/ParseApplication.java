@@ -21,7 +21,7 @@ public class ParseApplication extends Application {
 		// Add your initialization code here
 		Parse.initialize(this, getString(R.string.parse_app_id), getString(R.string.parse_client_key));
 
-		ParseUser.enableAutomaticUser();
+//		ParseUser.enableAutomaticUser();
 		ParseACL defaultACL = new ParseACL();
 
 		// If you would like all objects to be private by default, remove this
