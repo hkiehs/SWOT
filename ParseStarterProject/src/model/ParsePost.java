@@ -1,10 +1,13 @@
 package model;
 
+import java.util.List;
+
 import utility.Datum;
 import utility.Datum.Likes;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
+import com.parse.SaveCallback;
 
 @ParseClassName("Post")
 public class ParsePost extends ParseObject {
@@ -125,8 +128,8 @@ public class ParsePost extends ParseObject {
 		if (icon != null)
 			put(LINK, icon);
 	}
-	
-	public static ParsePost createParseObject(Datum datum ,String objectId) {
+
+	public static ParsePost createParseObject(Datum datum, String objectId) {
 		ParsePost parsePost = new ParsePost();
 		parsePost.setId(datum.id);
 		parsePost.setMessage(datum.message);
@@ -139,6 +142,14 @@ public class ParsePost extends ParseObject {
 		parsePost.setFromName(datum.from.name);
 		parsePost.setRestaurantId(objectId);
 		return parsePost;
+	}
+
+	public static void saveAllInBackground(List<ParsePost> objects, SaveCallback saveCallback) {
+		try {
+			ParsePost.saveAllInBackground(objects, saveCallback);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

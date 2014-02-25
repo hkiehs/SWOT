@@ -1,8 +1,10 @@
 package com.parse.starter;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import net.sf.classifier4J.SimpleClassifier;
 import utility.CategorisedDatum;
 import utility.Datum;
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
@@ -49,48 +52,74 @@ public class ProcessRestaurantJson extends IntentService {
 			e.printStackTrace();
 		}
 
+		int numberOfMatches = 0;
+		String reviewFileJson = "";
+		CategorisedDatum categorisedDatum = null;
+
 		for (final String reviewFileName : reviewFileNames) {
 			Log.i(DEBUG_TAG, "Processing Base File [" + reviewFileName + "]");
 			classifier.setSearchWord(reviewFileName);
+			numberOfMatches = 0;
 
-			for (final OfficialParseRestaurant.Result result : parseRestaurant.results) {
+			for (OfficialParseRestaurant.Result result : parseRestaurant.results) {
 				try {
 					if (classifier.isMatch(result.name)) {
-						Log.i(DEBUG_TAG, "*Match* :: Restaurant name [" + result.name + "]");
+						Log.i(DEBUG_TAG, "*Match* :: Restaurant name [" + result.name + "] withFileName[" + reviewFileName + "]");
+
 						// read and post data to post table
-						String reviewFileJson = readFile("reviews/" + reviewFileName + ".txt");
-						CategorisedDatum categorisedDatum = CategorisedDatum.fromJson(reviewFileJson);
-						ParsePost parsePost = null;
+						reviewFileJson = readFile("reviews/" + reviewFileName + ".txt");
+						categorisedDatum = CategorisedDatum.fromJson(reviewFileJson);
+
 						for (Datum datum : categorisedDatum.datums) {
-							parsePost = ParsePost.createParseObject(datum, result.objectId);
-							parsePost.saveEventually(new SaveCallback() {
+							ParsePost.createParseObject(datum, result.objectId).saveEventually(new SaveCallback() {
 								@Override
 								public void done(ParseException e) {
 									if (e == null) {
-										Log.i(DEBUG_TAG, "**Post table updated for restaurant name [" + result.name + "]");
+										Log.i(DEBUG_TAG, "**** Data inserted ****");
 									} else {
 										Log.i(DEBUG_TAG, "Error[" + e.getMessage() + "]");
 									}
 								}
 							});
-							parsePost = null;
 						}
-						
-					} else {
-						Log.i(DEBUG_TAG, "False [" + reviewFileName + "] != [" + result.name + "]");
+
+						numberOfMatches++;
+						reviewFileJson = null;
+						categorisedDatum = null;
 					}
 				} catch (ClassifierException e1) {
 					e1.printStackTrace();
 				}
+				result = null;
+			}
+			Log.i(DEBUG_TAG, "FileName[" + reviewFileName + "] MatchesCount[" + numberOfMatches + "]");
+			System.gc();
+			Log.i(DEBUG_TAG, "Sleeping for 4 secs");
+			try {
+				Thread.sleep(4000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 
+		Log.i(DEBUG_TAG, "Sleeping for 1 hour");
 		try {
 			Thread.sleep(3600000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
 
+	public void saveState(Context context, String data) {
+		FileOutputStream fos;
+		try {
+			fos = context.openFileOutput("SWOT_FILE_STATUS", 0);
+			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos);
+			outputStreamWriter.write(data);
+			outputStreamWriter.close();
+		} catch (IOException e) {
+			Log.e("Exception", "File write failed: " + e.toString());
+		}
 	}
 
 	private String readFile(String filename) {
