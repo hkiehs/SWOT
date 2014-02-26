@@ -26,25 +26,6 @@ public class ParseComment extends ParseObject {
 		return getString(POST_ID);
 	}
 
-	public void setPostId(String postId) {
-		if (postId != null)
-			put(POST_ID, ParseObject.createWithoutData("POST", postId));
-	}
-
-	public void updateLike(Boolean isLike) {
-		if (isLike != null) {
-			if (isLike)
-				this.increment(LIKE);
-			else
-				this.increment(LIKE, -1);
-		}
-	}
-
-	public void setComment(String comment) {
-		if (comment != null)
-			put(COMMENT, comment);
-	}
-
 	public static class Builder {
 		// Required parameters
 		private final String postId;
@@ -68,9 +49,15 @@ public class ParseComment extends ParseObject {
 	}
 
 	private ParseComment(Builder builder) {
-		setPostId(builder.postId);
-		setComment(builder.comment);
-		updateLike(builder.like);
+		put(POST_ID, ParseObject.createWithoutData("POST", builder.postId));
+		put(COMMENT, builder.comment);
+
+		if (builder.like != null) {
+			if (builder.like)
+				this.increment(LIKE);
+			else
+				this.increment(LIKE, -1);
+		}
 	}
 
 }
