@@ -7,13 +7,16 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import model.OfficialParseRestaurant;
+import model.ParseComment;
 import model.ParsePost;
 import net.sf.classifier4J.ClassifierException;
 import net.sf.classifier4J.SimpleClassifier;
 import utility.CategorisedDatum;
 import utility.Datum;
+import utility.Datum.Datum4;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +29,7 @@ public class ProcessRestaurantJson extends IntentService {
 	private static final String DEBUG_TAG = "ProcessRestaurantJson";
 
 	private SimpleClassifier classifier = null;
+	private ParsePost parsePost = null;
 
 	public ProcessRestaurantJson() {
 		super("ProcessRestaurantJson");
@@ -43,7 +47,7 @@ public class ProcessRestaurantJson extends IntentService {
 		// read restaurant names list given
 		List<String> reviewFileNames = new ArrayList<String>();
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(getAssets().open("review_filenames_list.txt")));
+			BufferedReader br = new BufferedReader(new InputStreamReader(getAssets().open("review_filenames_list_2.txt")));
 			String line;
 			while ((line = br.readLine()) != null) {
 				reviewFileNames.add(line);
@@ -55,9 +59,9 @@ public class ProcessRestaurantJson extends IntentService {
 		int numberOfMatches = 0;
 		String reviewFileJson = "";
 		CategorisedDatum categorisedDatum = null;
-
-		for (final String reviewFileName : reviewFileNames) {
-			Log.i(DEBUG_TAG, "Processing Base File [" + reviewFileName + "]");
+		String reviewFileName = null;
+		for (int i = 0; i < reviewFileNames.size(); i++) {
+			reviewFileName = reviewFileNames.get(i);
 			classifier.setSearchWord(reviewFileName);
 			numberOfMatches = 0;
 
@@ -70,17 +74,28 @@ public class ProcessRestaurantJson extends IntentService {
 						reviewFileJson = readFile("reviews/" + reviewFileName + ".txt");
 						categorisedDatum = CategorisedDatum.fromJson(reviewFileJson);
 
-						for (Datum datum : categorisedDatum.datums) {
-							ParsePost.createParseObject(datum, result.objectId).saveEventually(new SaveCallback() {
-								@Override
-								public void done(ParseException e) {
-									if (e == null) {
-										Log.i(DEBUG_TAG, "**** Data inserted ****");
-									} else {
-										Log.i(DEBUG_TAG, "Error[" + e.getMessage() + "]");
+						for (final Datum datum : categorisedDatum.datums) {
+							parsePost = ParsePost.createParseObject(datum, result.objectId);
+
+							try {
+								parsePost.save();
+							} catch (ParseException e1) {
+								e1.printStackTrace();
+							}
+
+							String objectId = parsePost.getObjectId();
+							Log.i(DEBUG_TAG, "**** Data inserted [" + objectId + "] Processing comments ****");
+							if (datum.comments != null && datum.comments.data.size() > 0) {
+								for (Datum4 datum4 : datum.comments.data) {
+									ParseComment parseComment = new ParseComment.Builder(objectId, datum4.message, datum4.from.name, datum4.from.id).build();
+									try {
+										parseComment.save();
+										Log.i(DEBUG_TAG, "**** Comment saved [ " + parseComment.getObjectId() + "] ****");
+									} catch (ParseException e) {
+										e.printStackTrace();
 									}
 								}
-							});
+							}
 						}
 
 						numberOfMatches++;
@@ -93,21 +108,28 @@ public class ProcessRestaurantJson extends IntentService {
 				result = null;
 			}
 			Log.i(DEBUG_TAG, "FileName[" + reviewFileName + "] MatchesCount[" + numberOfMatches + "]");
-			System.gc();
-			Log.i(DEBUG_TAG, "Sleeping for 4 secs");
-			try {
-				Thread.sleep(4000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+
+			if (i == 30 || i == 60 || i == 90 || i == 120 || i == 150 || i == 180 || i == 210 || i == 240 || i == 270 || i == 300 || i == 330 || i == 360) {
+				System.gc();
+				Log.i(DEBUG_TAG, "Sleeping for 10 secs");
+				try {
+					Thread.sleep(10000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 
-		Log.i(DEBUG_TAG, "Sleeping for 1 hour");
-		try {
-			Thread.sleep(3600000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Log.i(DEBUG_TAG, "Hurray!! I am done...");
+	}
+
+	public static int randInt(int min, int max) {
+		// Usually this can be a field rather than a method variable
+		Random rand = new Random();
+		// nextInt is normally exclusive of the top value,
+		// so add 1 to make it inclusive
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+		return randomNum;
 	}
 
 	public void saveState(Context context, String data) {
