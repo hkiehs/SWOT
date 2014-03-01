@@ -12,9 +12,8 @@ import com.example.hellofoodies.utility.EndlessAdapter;
 import com.example.hellofoodies.utility.EndlessListView;
 
 public class WallFeedActivity extends Activity implements EndlessListView.EndlessListener {
-
-	private final static int ITEM_PER_REQUEST = 10;
-	EndlessListView lv;
+	private final static int ITEM_PER_REQUEST = 30;
+	private EndlessListView endLessListView;
 
 	int mult = 1;
 
@@ -23,12 +22,12 @@ public class WallFeedActivity extends Activity implements EndlessListView.Endles
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.wallfeed_activity);
 
-		lv = (EndlessListView) findViewById(R.id.el);
+		endLessListView = (EndlessListView) findViewById(R.id.el);
 
-		EndlessAdapter adp = new EndlessAdapter(this, createItems(mult), R.layout.row_layout);
-		lv.setLoadingView(R.layout.loading_layout);
-		lv.setAdapter(adp);
-		lv.setListener(this);
+		EndlessAdapter endLessAdapter = new EndlessAdapter(this, createItems(mult), R.layout.row_layout);
+		endLessListView.setLoadingView(R.layout.loading_layout);
+		endLessListView.setAdapter(endLessAdapter);
+		endLessListView.setListener(this);
 	}
 
 	private class FakeNetLoader extends AsyncTask<String, Void, List<String>> {
@@ -46,7 +45,7 @@ public class WallFeedActivity extends Activity implements EndlessListView.Endles
 		@Override
 		protected void onPostExecute(List<String> result) {
 			super.onPostExecute(result);
-			lv.addNewData(result);
+			endLessListView.addNewData(result);
 		}
 
 	}
@@ -68,7 +67,5 @@ public class WallFeedActivity extends Activity implements EndlessListView.Endles
 		// We load more data here
 		FakeNetLoader fl = new FakeNetLoader();
 		fl.execute(new String[]{});
-
 	}
-
 }
