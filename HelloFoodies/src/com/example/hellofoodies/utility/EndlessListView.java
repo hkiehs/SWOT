@@ -10,6 +10,8 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
+import com.example.hellofoodies.parse.ParsePost;
+
 public class EndlessListView extends ListView implements OnScrollListener {
 
 	private View footer;
@@ -71,7 +73,7 @@ public class EndlessListView extends ListView implements OnScrollListener {
 		this.removeFooterView(footer);
 	}
 
-	public void addNewData(List<String> data) {
+	public void addNewData(List<ParsePost> data) {
 
 		this.removeFooterView(footer);
 

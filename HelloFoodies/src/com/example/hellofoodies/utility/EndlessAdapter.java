@@ -2,8 +2,6 @@ package com.example.hellofoodies.utility;
 
 import java.util.List;
 
-import com.example.hellofoodies.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +9,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class EndlessAdapter extends ArrayAdapter<String> {
+import com.example.hellofoodies.R;
+import com.example.hellofoodies.parse.ParsePost;
 
-	private List<String> itemList;
+public class EndlessAdapter extends ArrayAdapter<ParsePost> {
+
+	private List<ParsePost> itemList;
 	private Context ctx;
 	private int layoutId;
 
-	public EndlessAdapter(Context ctx, List<String> itemList, int layoutId) {
+	public EndlessAdapter(Context ctx, List<ParsePost> itemList, int layoutId) {
 		super(ctx, layoutId, itemList);
 		this.itemList = itemList;
 		this.ctx = ctx;
@@ -30,7 +31,7 @@ public class EndlessAdapter extends ArrayAdapter<String> {
 	}
 
 	@Override
-	public String getItem(int position) {
+	public ParsePost getItem(int position) {
 		return itemList.get(position);
 	}
 
@@ -48,9 +49,10 @@ public class EndlessAdapter extends ArrayAdapter<String> {
 			result = inflater.inflate(layoutId, parent, false);
 		}
 
+		ParsePost parsePost = itemList.get(position);
 		// We should use class holder pattern
-		TextView tv = (TextView) result.findViewById(R.id.txt1);
-		tv.setText(itemList.get(position));
+		TextView tv = (TextView) result.findViewById(R.id.textViewUsername);
+		tv.setText(parsePost.getFromName());
 
 		return result;
 
