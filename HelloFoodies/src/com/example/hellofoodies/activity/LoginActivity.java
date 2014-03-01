@@ -1,7 +1,5 @@
 package com.example.hellofoodies.activity;
 
-import java.util.ArrayList;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
@@ -12,36 +10,24 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.hellofoodies.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.plus.People;
-import com.google.android.gms.plus.People.LoadPeopleResult;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
-import com.google.android.gms.plus.model.people.PersonBuffer;
 
 /**
- * Google+ Sign-In and usage of the Google+ APIs to retrieve a
- * users profile information.
+ * Google+ Sign-In and usage of the Google+ APIs to retrieve a users profile
+ * information.
  */
-public class LoginActivity extends FragmentActivity
-		implements
-			ConnectionCallbacks,
-			OnConnectionFailedListener,
-			ResultCallback<People.LoadPeopleResult>,
-			View.OnClickListener {
+public class LoginActivity extends FragmentActivity implements ConnectionCallbacks, OnConnectionFailedListener, View.OnClickListener {
 
 	private static final String TAG = "LoginActivity";
 
@@ -81,36 +67,27 @@ public class LoginActivity extends FragmentActivity
 	private PendingIntent mSignInIntent;
 
 	// Used to store the error code most recently returned by Google Play
-	// services
-	// until the user clicks 'sign in'.
+	// services until the user clicks 'sign in'.
 	private int mSignInError;
 
 	private SignInButton mSignInButton;
 	private Button mSignOutButton;
 	private Button mRevokeButton;
 	private TextView mStatus;
-	private ListView mCirclesListView;
-	private ArrayAdapter<String> mCirclesAdapter;
-	private ArrayList<String> mCirclesList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main_activity);
+		setContentView(R.layout.login_activity);
 
 		mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
 		mSignOutButton = (Button) findViewById(R.id.sign_out_button);
 		mRevokeButton = (Button) findViewById(R.id.revoke_access_button);
 		mStatus = (TextView) findViewById(R.id.sign_in_status);
-		mCirclesListView = (ListView) findViewById(R.id.circles_list);
 
 		mSignInButton.setOnClickListener(this);
 		mSignOutButton.setOnClickListener(this);
 		mRevokeButton.setOnClickListener(this);
-
-		mCirclesList = new ArrayList<String>();
-		mCirclesAdapter = new ArrayAdapter<String>(this, R.layout.circle_member, mCirclesList);
-		mCirclesListView.setAdapter(mCirclesAdapter);
 
 		if (savedInstanceState != null) {
 			mSignInProgress = savedInstanceState.getInt(SAVED_PROGRESS, STATE_DEFAULT);
@@ -211,14 +188,18 @@ public class LoginActivity extends FragmentActivity
 		Person currentUser = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
 		Log.i(TAG, "UserInfo[" + currentUser.toString() + "]");
 		Log.i(TAG, "ImageUrl[" + currentUser.getImage().getUrl() + "]");
-		
-		
-		mStatus.setText(String.format(getResources().getString(R.string.signed_in_as), currentUser.getDisplayName()));
 
-		Plus.PeopleApi.loadVisible(mGoogleApiClient, null).setResultCallback(this);
+		// mStatus.setText(String.format(getResources().getString(R.string.signed_in_as),
+		// currentUser.getDisplayName()));
+		// Plus.PeopleApi.loadVisible(mGoogleApiClient,
+		// null).setResultCallback(this);
 
 		// Indicate that the sign in process is complete.
 		mSignInProgress = STATE_DEFAULT;
+
+		// on successful login move to wall feed activity
+		startActivity(new Intent(this, WallFeedActivity.class));
+		LoginActivity.this.finish();
 	}
 
 	/*
@@ -322,26 +303,6 @@ public class LoginActivity extends FragmentActivity
 		}
 	}
 
-	@Override
-	public void onResult(LoadPeopleResult peopleData) {
-		if (peopleData.getStatus().getStatusCode() == CommonStatusCodes.SUCCESS) {
-			mCirclesList.clear();
-			PersonBuffer personBuffer = peopleData.getPersonBuffer();
-			try {
-				int count = personBuffer.getCount();
-				for (int i = 0; i < count; i++) {
-					mCirclesList.add(personBuffer.get(i).getDisplayName());
-				}
-			} finally {
-				personBuffer.close();
-			}
-
-			mCirclesAdapter.notifyDataSetChanged();
-		} else {
-			Log.e(TAG, "Error requesting visible circles: " + peopleData.getStatus());
-		}
-	}
-
 	private void onSignedOut() {
 		// Update the UI to reflect that the user is signed out.
 		mSignInButton.setEnabled(true);
@@ -349,9 +310,6 @@ public class LoginActivity extends FragmentActivity
 		mRevokeButton.setEnabled(false);
 
 		mStatus.setText(R.string.status_signed_out);
-
-		mCirclesList.clear();
-		mCirclesAdapter.notifyDataSetChanged();
 	}
 
 	@Override
