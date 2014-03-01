@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.hellofoodies.R;
+import com.example.hellofoodies.handler.ParseHandler;
 import com.example.hellofoodies.parse.ParsePost;
 import com.example.hellofoodies.utility.EndlessAdapter;
 import com.example.hellofoodies.utility.EndlessListView;
@@ -28,8 +29,7 @@ public class WallFeedActivity extends Activity implements EndlessListView.Endles
 
 		endLessListView = (EndlessListView) findViewById(R.id.el);
 
-		ParseQuery<ParsePost> query = ParseQuery.getQuery("Post");
-		query.setLimit(ITEM_PER_REQUEST);
+		ParseQuery<ParsePost> query = ParseHandler.queryPost(ITEM_PER_REQUEST, null);
 		query.findInBackground(new FindCallback<ParsePost>() {
 			@Override
 			public void done(List<ParsePost> objects, ParseException e) {
@@ -48,10 +48,7 @@ public class WallFeedActivity extends Activity implements EndlessListView.Endles
 	@Override
 	public void loadData() {
 		SKIP_PER_REQUEST = SKIP_PER_REQUEST + ITEM_PER_REQUEST;
-		System.out.println("Load data");
-		ParseQuery<ParsePost> query = ParseQuery.getQuery("Post");
-		query.setLimit(ITEM_PER_REQUEST);
-		query.setSkip(SKIP_PER_REQUEST);
+		ParseQuery<ParsePost> query = ParseHandler.queryPost(ITEM_PER_REQUEST, SKIP_PER_REQUEST);
 		query.findInBackground(new FindCallback<ParsePost>() {
 			@Override
 			public void done(List<ParsePost> objects, ParseException e) {

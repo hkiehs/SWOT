@@ -5,6 +5,8 @@ import com.parse.ParseObject;
 
 @ParseClassName("Post")
 public class ParsePost extends ParseObject {
+	public static final String TABLE_NAME = "Post";
+	
 	private static final String ID = "id";
 	private static final String MESSAGE = "message";
 	private static final String TYPE = "type";
