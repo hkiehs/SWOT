@@ -20,18 +20,17 @@ public class WallFeedActivity extends Activity implements EndlessListView.Endles
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.wallfeed_activity);
+		setContentView(R.layout.activity_wall_feed);
 
 		endLessListView = (EndlessListView) findViewById(R.id.el);
 
-		EndlessAdapter endLessAdapter = new EndlessAdapter(this, createItems(mult), R.layout.row_layout);
+		EndlessAdapter endLessAdapter = new EndlessAdapter(this, createItems(mult), R.layout.widget_wall_feed);
 		endLessListView.setLoadingView(R.layout.loading_layout);
 		endLessListView.setAdapter(endLessAdapter);
 		endLessListView.setListener(this);
 	}
 
 	private class FakeNetLoader extends AsyncTask<String, Void, List<String>> {
-
 		@Override
 		protected List<String> doInBackground(String... params) {
 			try {

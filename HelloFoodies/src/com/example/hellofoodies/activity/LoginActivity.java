@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.hellofoodies.HelloFoodiesApplication;
 import com.example.hellofoodies.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -78,7 +79,7 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login_activity);
+		setContentView(R.layout.activity_login);
 
 		mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
 		mSignOutButton = (Button) findViewById(R.id.sign_out_button);
@@ -129,8 +130,7 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 	public void onClick(View v) {
 		if (!mGoogleApiClient.isConnecting()) {
 			// We only process button clicks when GoogleApiClient is not
-			// transitioning
-			// between connected and not connected.
+			// transitioning between connected and not connected.
 			switch (v.getId()) {
 				case R.id.sign_in_button :
 					mStatus.setText(R.string.status_signing_in);
@@ -138,26 +138,21 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 					break;
 				case R.id.sign_out_button :
 					// We clear the default account on sign out so that Google
-					// Play
-					// services will not return an onConnected callback without
-					// user
-					// interaction.
+					// Play services will not return an onConnected callback
+					// without user interaction.
 					Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
 					mGoogleApiClient.disconnect();
 					mGoogleApiClient.connect();
 					break;
 				case R.id.revoke_access_button :
 					// After we revoke permissions for the user with a
-					// GoogleApiClient
-					// instance, we must discard it and create a new one.
+					// GoogleApiClient instance, we must discard it and create a
+					// new one.
 					Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
 					// Our sample has caches no user data from Google+, however
-					// we
-					// would normally register a callback on
-					// revokeAccessAndDisconnect
-					// to delete user data so that we comply with Google
-					// developer
-					// policies.
+					// we would normally register a callback on
+					// revokeAccessAndDisconnect to delete user data so that we
+					// comply with Google developer policies.
 					Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
 					mGoogleApiClient = buildGoogleApiClient();
 					mGoogleApiClient.connect();
@@ -186,6 +181,9 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 		// Retrieve some profile information to personalize our app for the
 		// user.
 		Person currentUser = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
+		HelloFoodiesApplication helloFoodiesApplication = ((HelloFoodiesApplication) this.getApplication());
+		helloFoodiesApplication.setCurrentUser(currentUser);
+
 		Log.i(TAG, "UserInfo[" + currentUser.toString() + "]");
 		Log.i(TAG, "ImageUrl[" + currentUser.getImage().getUrl() + "]");
 
@@ -211,31 +209,26 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 	@Override
 	public void onConnectionFailed(ConnectionResult result) {
 		// Refer to the javadoc for ConnectionResult to see what error codes
-		// might
-		// be returned in onConnectionFailed.
+		// might be returned in onConnectionFailed.
 		Log.i(TAG, "onConnectionFailed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
 
 		if (mSignInProgress != STATE_IN_PROGRESS) {
 			// We do not have an intent in progress so we should store the
-			// latest
-			// error resolution intent for use when the sign in button is
+			// latest error resolution intent for use when the sign in button is
 			// clicked.
 			mSignInIntent = result.getResolution();
 			mSignInError = result.getErrorCode();
 
 			if (mSignInProgress == STATE_SIGN_IN) {
 				// STATE_SIGN_IN indicates the user already clicked the sign in
-				// button
-				// so we should continue processing errors until the user is
-				// signed in
-				// or they click cancel.
+				// button so we should continue processing errors until the user
+				// is signed in or they click cancel.
 				resolveSignInError();
 			}
 		}
 
 		// In this sample we consider the user signed out whenever they do not
-		// have
-		// a connection to Google Play services.
+		// have a connection to Google Play services.
 		onSignedOut();
 	}
 
