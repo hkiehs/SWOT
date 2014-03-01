@@ -1,17 +1,3 @@
-/**
- * Copyright 2013 Google Inc. All Rights Reserved.
- *
- *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software distributed under the
- * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- * express or implied. See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.example.hellofoodies.activity;
 
 import java.util.ArrayList;
@@ -47,9 +33,7 @@ import com.google.android.gms.plus.model.people.Person;
 import com.google.android.gms.plus.model.people.PersonBuffer;
 
 /**
- * Android Google+ Quickstart activity.
- * 
- * Demonstrates Google+ Sign-In and usage of the Google+ APIs to retrieve a
+ * Google+ Sign-In and usage of the Google+ APIs to retrieve a
  * users profile information.
  */
 public class LoginActivity extends FragmentActivity
@@ -225,7 +209,10 @@ public class LoginActivity extends FragmentActivity
 		// Retrieve some profile information to personalize our app for the
 		// user.
 		Person currentUser = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
-
+		Log.i(TAG, "UserInfo[" + currentUser.toString() + "]");
+		Log.i(TAG, "ImageUrl[" + currentUser.getImage().getUrl() + "]");
+		
+		
 		mStatus.setText(String.format(getResources().getString(R.string.signed_in_as), currentUser.getDisplayName()));
 
 		Plus.PeopleApi.loadVisible(mGoogleApiClient, null).setResultCallback(this);
