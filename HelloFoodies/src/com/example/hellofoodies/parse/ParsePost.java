@@ -82,7 +82,7 @@ public class ParsePost extends ParseObject {
 			this.restaurantId = restaurantId;
 		}
 
-		public Builder like(Boolean value) {
+		public Builder like(boolean value) {
 			like = value;
 			return this;
 		}

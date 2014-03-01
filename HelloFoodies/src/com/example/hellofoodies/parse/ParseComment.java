@@ -52,8 +52,8 @@ public class ParseComment extends ParseObject {
 			this.facebookId = facebookId;
 		}
 
-		public Builder like(Boolean val) {
-			like = val;
+		public Builder like(boolean value) {
+			like = value;
 			return this;
 		}
 

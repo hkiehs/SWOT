@@ -86,7 +86,7 @@ public class ParseRestaurant extends ParseObject {
 		public double longitude;
 		public double rating;
 		public int reviews;
-		public int likes;
+		public Boolean like;
 		public int range;
 		public String highights;
 
@@ -121,8 +121,8 @@ public class ParseRestaurant extends ParseObject {
 			return this;
 		}
 
-		public Builder likes(int likes) {
-			this.likes = likes;
+		public Builder likes(boolean value) {
+			this.like = value;
 			return this;
 		}
 
@@ -151,8 +151,12 @@ public class ParseRestaurant extends ParseObject {
 		put(LONGITUDE, builder.longitude);
 		put(RATING, builder.rating);
 		put(REVIEW, builder.reviews);
-		put(LIKE, builder.likes);
 		put(RANGE, builder.range);
+		if (builder.like != null) {
+			if (builder.like)
+				this.increment(LIKE);
+			else
+				this.increment(LIKE, -1);
+		}
 	}
-
 }
