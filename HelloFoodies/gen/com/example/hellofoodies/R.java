@@ -221,10 +221,17 @@ containing a value of this type.
         public static final int ic_plusone_tall_off_client=0x7f02001c;
     }
     public static final class id {
+        public static final int circles_list=0x7f05000b;
+        public static final int circles_title=0x7f05000a;
+        public static final int display_name=0x7f050005;
         public static final int hybrid=0x7f050004;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
+        public static final int revoke_access_button=0x7f050008;
         public static final int satellite=0x7f050002;
+        public static final int sign_in_button=0x7f050006;
+        public static final int sign_in_status=0x7f050009;
+        public static final int sign_out_button=0x7f050007;
         public static final int terrain=0x7f050003;
     }
     public static final class integer {
@@ -232,6 +239,8 @@ containing a value of this type.
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int circle_member=0x7f030001;
+        public static final int main_activity=0x7f030002;
     }
     public static final class string {
         public static final int action_settings=0x7f06001b;
@@ -259,6 +268,8 @@ containing a value of this type.
         [CHAR LIMIT=70] 
          */
         public static final int auth_client_using_bad_version_title=0x7f060014;
+        public static final int circles_title=0x7f06001d;
+        public static final int close=0x7f06002a;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -331,6 +342,23 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f060013;
         public static final int hello_world=0x7f06001c;
+        public static final int parse_app_id=0x7f06002c;
+        public static final int parse_client_key=0x7f06002d;
+        public static final int play_services_error=0x7f060029;
+        public static final int profile_picture=0x7f06002b;
+        public static final int revoke_access_button_name=0x7f06001f;
+        public static final int sign_out_button_name=0x7f06001e;
+        public static final int signed_in_as=0x7f060027;
+        public static final int status_loading=0x7f060022;
+        public static final int status_revoke_access=0x7f060025;
+        public static final int status_revoke_access_error=0x7f060026;
+        public static final int status_sign_in_error=0x7f060021;
+        public static final int status_sign_in_required=0x7f060020;
+        public static final int status_signed_out=0x7f060024;
+        public static final int status_signing_in=0x7f060023;
+        /**  Used if there was an error loading the signed in user's name. 
+         */
+        public static final int unknown_person=0x7f060028;
     }
     public static final class style {
         /** 
