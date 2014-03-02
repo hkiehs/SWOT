@@ -181,8 +181,8 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 		// user.
 		Person currentUser = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
 
-		Timber.d(TAG, "UserInfo[" + currentUser.toString() + "]");
-		Timber.d(TAG, "ImageUrl[" + currentUser.getImage().getUrl() + "]");
+		Timber.i("UserInfo[" + currentUser.toString() + "]");
+		Timber.i("ImageUrl[" + currentUser.getImage().getUrl() + "]");
 
 		// mStatus.setText(String.format(getResources().getString(R.string.signed_in_as),
 		// currentUser.getDisplayName()));

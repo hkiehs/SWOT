@@ -1,7 +1,5 @@
 package com.example.hellofoodies.utility;
 
-import java.util.Arrays;
-
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +16,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
 public class WallFeedAdapter extends ParseQueryAdapter<ParsePost> {
+	private Context context;
 
 	public WallFeedAdapter(Context context) {
 		super(context, new ParseQueryAdapter.QueryFactory<ParsePost>() {
@@ -28,6 +27,7 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParsePost> {
 				return query;
 			}
 		});
+		this.context = context;
 	}
 
 	@Override
@@ -37,12 +37,12 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParsePost> {
 		}
 		super.getItemView(parsePost, v, parent);
 
-		ParseImageView mealImage = (ParseImageView) v.findViewById(R.id.imageViewProfile);
-
+		ParseImageView profileImage = (ParseImageView) v.findViewById(R.id.imageViewProfile);
+		profileImage.setPlaceholder(context.getResources().getDrawable(R.drawable.photo));
 		ParseFile photoFile = parsePost.getParseFile(ParsePost.PHOTO);
 		if (photoFile != null) {
-			mealImage.setParseFile(photoFile);
-			mealImage.loadInBackground(new GetDataCallback() {
+			profileImage.setParseFile(photoFile);
+			profileImage.loadInBackground(new GetDataCallback() {
 				@Override
 				public void done(byte[] data, ParseException e) {
 					// nothing to do

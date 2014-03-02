@@ -8,20 +8,17 @@ import com.example.hellofoodies.utility.WallFeedAdapter;
 public class WallFeedActivity extends ListActivity {
 	private static final String LOG_TAG = "WallFeedActivity";
 
-	private static int ITEM_PER_REQUEST = 10;
-	private static int SKIP_PER_REQUEST = 0;
-
 	private WallFeedAdapter wallFeedAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		wallFeedAdapter = new WallFeedAdapter(this);
 		setListAdapter(wallFeedAdapter);
-//		updateMealList();
 	}
 
-	private void updateMealList() {
-		wallFeedAdapter.loadObjects();
-		setListAdapter(wallFeedAdapter);
-	}
+//	private void updateMealList() {
+//		wallFeedAdapter.loadObjects();
+//		setListAdapter(wallFeedAdapter);
+//	}
 }
