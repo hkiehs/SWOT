@@ -2,9 +2,9 @@ package com.example.hellofoodies.activity;
 
 import java.util.List;
 
+import timber.log.Timber;
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.hellofoodies.R;
 import com.example.hellofoodies.handler.ParseHandler;
@@ -29,7 +29,7 @@ public class WallFeedActivity extends Activity implements EndlessListView.Endles
 
 		endLessListView = (EndlessListView) findViewById(R.id.el);
 
-		ParseQuery<ParsePost> query = ParseHandler.queryPost(ITEM_PER_REQUEST, null);
+		ParseQuery<ParsePost> query = ParseHandler.queryPostInDescOrder(ITEM_PER_REQUEST, null, true);
 		query.findInBackground(new FindCallback<ParsePost>() {
 			@Override
 			public void done(List<ParsePost> objects, ParseException e) {
@@ -39,7 +39,7 @@ public class WallFeedActivity extends Activity implements EndlessListView.Endles
 					endLessListView.setAdapter(endLessAdapter);
 					endLessListView.setListener(WallFeedActivity.this);
 				} else {
-					Log.d(LOG_TAG, "Error: " + e.getMessage());
+					Timber.e(LOG_TAG, "Error: " + e.getMessage());
 				}
 			}
 		});
@@ -48,14 +48,14 @@ public class WallFeedActivity extends Activity implements EndlessListView.Endles
 	@Override
 	public void loadData() {
 		SKIP_PER_REQUEST = SKIP_PER_REQUEST + ITEM_PER_REQUEST;
-		ParseQuery<ParsePost> query = ParseHandler.queryPost(ITEM_PER_REQUEST, SKIP_PER_REQUEST);
+		ParseQuery<ParsePost> query = ParseHandler.queryPostInDescOrder(ITEM_PER_REQUEST, SKIP_PER_REQUEST, true);
 		query.findInBackground(new FindCallback<ParsePost>() {
 			@Override
 			public void done(List<ParsePost> objects, ParseException e) {
 				if (e == null) {
 					endLessListView.addNewData(objects);
 				} else {
-					Log.d(LOG_TAG, "Error: " + e.getMessage());
+					Timber.e(LOG_TAG, "Error: " + e.getMessage());
 				}
 			}
 		});

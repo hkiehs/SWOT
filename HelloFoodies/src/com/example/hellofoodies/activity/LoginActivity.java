@@ -1,5 +1,6 @@
 package com.example.hellofoodies.activity;
 
+import timber.log.Timber;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.PendingIntent;
@@ -8,12 +9,10 @@ import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.hellofoodies.HelloFoodiesApplication;
 import com.example.hellofoodies.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -171,7 +170,7 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 	@Override
 	public void onConnected(Bundle connectionHint) {
 		// Reaching onConnected means we consider the user signed in.
-		Log.i(TAG, "onConnected");
+		Timber.i(TAG, "onConnected");
 
 		// Update the user interface to reflect that the user is signed in.
 		mSignInButton.setEnabled(false);
@@ -181,11 +180,9 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 		// Retrieve some profile information to personalize our app for the
 		// user.
 		Person currentUser = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
-		HelloFoodiesApplication helloFoodiesApplication = ((HelloFoodiesApplication) this.getApplication());
-		helloFoodiesApplication.setCurrentUser(currentUser);
 
-		Log.i(TAG, "UserInfo[" + currentUser.toString() + "]");
-		Log.i(TAG, "ImageUrl[" + currentUser.getImage().getUrl() + "]");
+		Timber.d(TAG, "UserInfo[" + currentUser.toString() + "]");
+		Timber.d(TAG, "ImageUrl[" + currentUser.getImage().getUrl() + "]");
 
 		// mStatus.setText(String.format(getResources().getString(R.string.signed_in_as),
 		// currentUser.getDisplayName()));
@@ -210,7 +207,7 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 	public void onConnectionFailed(ConnectionResult result) {
 		// Refer to the javadoc for ConnectionResult to see what error codes
 		// might be returned in onConnectionFailed.
-		Log.i(TAG, "onConnectionFailed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
+		Timber.i(TAG, "onConnectionFailed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
 
 		if (mSignInProgress != STATE_IN_PROGRESS) {
 			// We do not have an intent in progress so we should store the
@@ -254,7 +251,7 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 				mSignInProgress = STATE_IN_PROGRESS;
 				startIntentSenderForResult(mSignInIntent.getIntentSender(), RC_SIGN_IN, null, 0, 0, 0);
 			} catch (SendIntentException e) {
-				Log.i(TAG, "Sign in intent could not be sent: " + e.getLocalizedMessage());
+				Timber.e(TAG, "Sign in intent could not be sent: " + e.getLocalizedMessage());
 				// The intent was canceled before it was sent. Attempt to
 				// connect to
 				// get an updated ConnectionResult.
@@ -321,7 +318,7 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 					return GooglePlayServicesUtil.getErrorDialog(mSignInError, this, RC_SIGN_IN, new DialogInterface.OnCancelListener() {
 						@Override
 						public void onCancel(DialogInterface dialog) {
-							Log.e(TAG, "Google Play services resolution cancelled");
+							Timber.e(TAG, "Google Play services resolution cancelled");
 							mSignInProgress = STATE_DEFAULT;
 							mStatus.setText(R.string.status_signed_out);
 						}
@@ -331,7 +328,7 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 							.setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog, int which) {
-									Log.e(TAG, "Google Play services error could not be " + "resolved: " + mSignInError);
+									Timber.e(TAG, "Google Play services error could not be " + "resolved: " + mSignInError);
 									mSignInProgress = STATE_DEFAULT;
 									mStatus.setText(R.string.status_signed_out);
 								}

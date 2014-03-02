@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hellofoodies.R;
@@ -17,6 +19,11 @@ public class EndlessAdapter extends ArrayAdapter<ParsePost> {
 	private List<ParsePost> itemList;
 	private Context ctx;
 	private int layoutId;
+
+	private TextView username;
+	private ImageView profileImg;
+	private TextView textViewPost;
+	private Button buttonLike;
 
 	public EndlessAdapter(Context ctx, List<ParsePost> itemList, int layoutId) {
 		super(ctx, layoutId, itemList);
@@ -51,8 +58,14 @@ public class EndlessAdapter extends ArrayAdapter<ParsePost> {
 
 		ParsePost parsePost = itemList.get(position);
 		// We should use class holder pattern
-		TextView tv = (TextView) result.findViewById(R.id.textViewUsername);
-		tv.setText(parsePost.getFromName());
+		username = (TextView) result.findViewById(R.id.textViewUsername);
+		profileImg = (ImageView) result.findViewById(R.id.imageViewProfile);
+		textViewPost = (TextView) result.findViewById(R.id.textViewPost);
+		buttonLike = (Button) result.findViewById(R.id.buttonLike);
+
+		username.setText(parsePost.getFromName());
+		textViewPost.setText(parsePost.getMessage());
+		buttonLike.setText(parsePost.getLikes() + "");
 
 		return result;
 

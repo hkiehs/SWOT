@@ -1,41 +1,65 @@
 package com.example.hellofoodies;
 
+import timber.log.Timber;
+import timber.log.Timber.DebugTree;
 import android.app.Application;
 
 import com.example.hellofoodies.parse.ParseComment;
 import com.example.hellofoodies.parse.ParsePost;
 import com.example.hellofoodies.parse.ParseRestaurant;
-import com.google.android.gms.plus.model.people.Person;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
 
 public class HelloFoodiesApplication extends Application {
 
-	private Person currentUser;
-
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		
+
+		// register parse
 		ParseObject.registerSubclass(ParseRestaurant.class);
 		ParseObject.registerSubclass(ParseComment.class);
 		ParseObject.registerSubclass(ParsePost.class);
 
-		// Add your initialization code here
 		Parse.initialize(this, getString(R.string.parse_app_id), getString(R.string.parse_client_key));
 
 		ParseACL defaultACL = new ParseACL();
 		defaultACL.setPublicReadAccess(true);
 		ParseACL.setDefaultACL(defaultACL, true);
+
+		// initialize timber
+		if (BuildConfig.DEBUG) {
+			Timber.plant(new DebugTree());
+		} else {
+			Timber.plant(new CrashReportingTree());
+		}
 	}
 
-	public void setCurrentUser(Person user) {
-		this.currentUser = user;
-	}
+	/** A tree which logs important information for crash reporting. */
+	private static class CrashReportingTree extends Timber.HollowTree {
+		@Override
+		public void i(String message, Object... args) {
+			// TODO e.g., Crashlytics.log(String.format(message, args));
+			System.out.println(String.format(message, args));
+		}
 
-	public Person getCurrentUser() {
-		return this.currentUser;
+		@Override
+		public void i(Throwable t, String message, Object... args) {
+			i(message, args); // Just add to the log.
+		}
+
+		@Override
+		public void e(String message, Object... args) {
+			i("ERROR: " + message, args); // Just add to the log.
+		}
+
+		@Override
+		public void e(Throwable t, String message, Object... args) {
+			e(message, args);
+			// TODO e.g., Crashlytics.logException(t);
+			System.out.println(t);
+		}
 	}
 
 }
