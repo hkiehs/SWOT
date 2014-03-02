@@ -1,22 +1,25 @@
 package com.example.hellofoodies.parse;
 
 import com.parse.ParseClassName;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 @ParseClassName("Post")
 public class ParsePost extends ParseObject {
 	public static final String TABLE_NAME = "Post";
-	
-	private static final String ID = "id";
-	private static final String MESSAGE = "message";
-	private static final String TYPE = "type";
-	private static final String LIKE = "like";
-	private static final String PICTURE = "picture";
-	private static final String LINK = "link";
-	private static final String ICON = "icon";
-	private static final String FROM_ID = "fromId";
-	private static final String FROM_NAME = "fromName";
-	private static final String RESTAURANT_ID = "restaurantId";
+
+	public static final String ID = "id";
+	public static final String MESSAGE = "message";
+	public static final String TYPE = "type";
+	public static final String LIKE = "like";
+	public static final String PICTURE = "picture";
+	public static final String LINK = "link";
+	public static final String ICON = "icon";
+	public static final String FROM_ID = "fromId";
+	public static final String FROM_NAME = "fromName";
+	public static final String RESTAURANT_ID = "restaurantId";
+	public static final String PHOTO = "photo";
+	public static final String CREATED_AT = "createdAt";
 
 	public ParsePost() {
 		// A default constructor is required.
@@ -62,6 +65,10 @@ public class ParsePost extends ParseObject {
 		return getString(RESTAURANT_ID);
 	}
 
+	public ParseFile getPhotoFile() {
+		return getParseFile(PHOTO);
+	}
+
 	public static class Builder {
 		// Required parameters
 		private String restaurantId;
@@ -74,6 +81,7 @@ public class ParsePost extends ParseObject {
 		private String id = null;
 		private String link = null;
 		private Boolean like = null;
+		private ParseFile photo = null;
 
 		public Builder(String username, String userId, String message, String type, String restaurantId, String picture) {
 			this.message = message;
@@ -99,6 +107,11 @@ public class ParsePost extends ParseObject {
 			return this;
 		}
 
+		public Builder photo(ParseFile photo) {
+			this.photo = photo;
+			return this;
+		}
+
 		public ParsePost build() {
 			return new ParsePost(this);
 		}
@@ -113,6 +126,9 @@ public class ParsePost extends ParseObject {
 		put(TYPE, builder.type);
 		put(PICTURE, builder.picture);
 		put(LINK, builder.link);
+
+		if (builder.photo != null)
+			put(PHOTO, builder.photo);
 
 		if (builder.like != null) {
 			if (builder.like)

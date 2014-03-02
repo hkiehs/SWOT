@@ -1,5 +1,6 @@
 package com.example.hellofoodies.handler;
 
+import com.example.hellofoodies.parse.ParseComment;
 import com.example.hellofoodies.parse.ParsePost;
 import com.parse.ParseQuery;
 
@@ -15,6 +16,14 @@ public class ParseHandler {
 			query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
 
 		query.orderByDescending("createdAt");
+		return query;
+	}
+
+	public static ParseQuery<ParseComment> queryCommentCount(String objectId, boolean enableCache) {
+		ParseQuery<ParseComment> query = ParseQuery.getQuery(ParseComment.TABLE_NAME);
+		query.whereEqualTo("objectId", objectId);
+		if (enableCache)
+			query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
 		return query;
 	}
 

@@ -5,12 +5,13 @@ import com.parse.ParseObject;
 
 @ParseClassName("Comment")
 public class ParseComment extends ParseObject {
+	public static final String TABLE_NAME = "Comment";
 
-	public static final String FACEBOOK_ID = "facebookID";
-	public static final String USER_NAME = "userName";
-	public static final String COMMENT = "comment";
-	public static final String POST_ID = "postId";
-	public static final String LIKE = "like";
+	private static final String FACEBOOK_ID = "facebookID";
+	private static final String USER_NAME = "userName";
+	private static final String COMMENT = "comment";
+	private static final String POST_ID = "postId";
+	private static final String LIKE = "like";
 
 	public ParseComment() {
 		// A default constructor is required.
