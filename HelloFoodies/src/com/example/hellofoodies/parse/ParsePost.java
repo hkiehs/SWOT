@@ -21,6 +21,19 @@ public class ParsePost extends ParseObject {
 	public static final String PHOTO = "photo";
 	public static final String CREATED_AT = "createdAt";
 
+	// Required parameters
+	private String restaurantId;
+	private String message;
+	private String type;
+	private String picture;
+	private String fromName;
+	private String fromId;
+	// Optional parameters - initialized to default values
+	private String id;
+	private String link;
+	private Boolean like;
+	private ParseFile photo;
+
 	public ParsePost() {
 		// A default constructor is required.
 	}
@@ -65,76 +78,52 @@ public class ParsePost extends ParseObject {
 		return getString(RESTAURANT_ID);
 	}
 
-	public ParseFile getPhotoFile() {
+	public ParseFile getPhoto() {
 		return getParseFile(PHOTO);
 	}
 
-	public static class Builder {
-		// Required parameters
-		private String restaurantId;
-		private String message;
-		private String type;
-		private String picture;
-		private String fromName;
-		private String fromId;
-		// Optional parameters - initialized to default values
-		private String id = null;
-		private String link = null;
-		private Boolean like = null;
-		private ParseFile photo = null;
-
-		public Builder(String username, String userId, String message, String type, String restaurantId, String picture) {
-			this.message = message;
-			this.type = type;
-			this.picture = picture;
-			this.fromName = username;
-			this.fromId = userId;
-			this.restaurantId = restaurantId;
-		}
-
-		public Builder like(boolean value) {
-			like = value;
-			return this;
-		}
-
-		public Builder link(String facebookLink) {
-			link = facebookLink;
-			return this;
-		}
-
-		public Builder facebookId(String facebookId) {
-			id = facebookId;
-			return this;
-		}
-
-		public Builder photo(ParseFile photo) {
-			this.photo = photo;
-			return this;
-		}
-
-		public ParsePost build() {
-			return new ParsePost(this);
-		}
+	public void setRestaurantId(String restaurantId) {
+		put(RESTAURANT_ID, ParseObject.createWithoutData(ParseRestaurant.TABLE_NAME, restaurantId));
 	}
 
-	private ParsePost(Builder builder) {
-		put(RESTAURANT_ID, ParseObject.createWithoutData("Restaurant", builder.restaurantId));
-		put(FROM_NAME, builder.fromName);
-		put(FROM_ID, builder.fromId);
-		put(ID, builder.id);
-		put(MESSAGE, builder.message);
-		put(TYPE, builder.type);
-		put(PICTURE, builder.picture);
-		put(LINK, builder.link);
+	public void setMessage(String message) {
+		put(MESSAGE, message);
+	}
 
-		if (builder.photo != null)
-			put(PHOTO, builder.photo);
+	public void setType(String type) {
+		put(TYPE, type);
+	}
 
-		if (builder.like != null) {
-			if (builder.like)
+	public void setPicture(String picture) {
+		put(PICTURE, picture);
+	}
+
+	public void setFromName(String fromName) {
+		put(FROM_NAME, fromName);
+	}
+
+	public void setFromId(String fromId) {
+		put(FROM_ID, fromId);
+	}
+
+	public void setId(String id) {
+		put(ID, id);
+	}
+
+	public void setLink(String link) {
+		put(LINK, link);
+	}
+
+	public void setLike(Boolean like) {
+		if (like != null) {
+			if (like)
 				this.increment(LIKE);
 			else
 				this.increment(LIKE, -1);
 		}
+	}
+
+	public void setPhoto(ParseFile photo) {
+		put(PHOTO, photo);
 	}
 }

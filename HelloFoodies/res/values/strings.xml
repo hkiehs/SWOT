@@ -24,4 +24,13 @@
     <string name="parse_app_id">MPy4xUoCmw1i8jw64OOqd9nJNYSFKZX3ZAoKLcBW</string>
     <string name="parse_client_key">BCPQXmWra5epgcpFaGouIujTt0TTFPTwv5HdM1cb</string>
 
+    <string-array name="ratings_array">
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item></item>
+    </string-array>
+
 </resources>

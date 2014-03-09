@@ -28,6 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.WallFeedActivity" />
+        <activity android:name=".activity.NewPostActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"

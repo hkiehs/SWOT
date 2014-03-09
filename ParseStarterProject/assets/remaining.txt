@@ -1,5 +1,0 @@
-Pizza
-Chinese
-Burger
-Dinner
-__Remaining__Data__

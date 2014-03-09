@@ -8,6 +8,9 @@
 package com.example.hellofoodies;
 
 public final class R {
+    public static final class array {
+        public static final int ratings_array=0x7f090000;
+    }
     public static final class attr {
         /** 
     The size of the ad. It must be one of BANNER, FULL_BANNER, LEADERBOARD,
@@ -214,38 +217,56 @@ containing a value of this type.
         public static final int common_signin_btn_text_normal_light=0x7f020015;
         public static final int common_signin_btn_text_pressed_dark=0x7f020016;
         public static final int common_signin_btn_text_pressed_light=0x7f020017;
-        public static final int ic_launcher=0x7f020018;
-        public static final int ic_plusone_medium_off_client=0x7f020019;
-        public static final int ic_plusone_small_off_client=0x7f02001a;
-        public static final int ic_plusone_standard_off_client=0x7f02001b;
-        public static final int ic_plusone_tall_off_client=0x7f02001c;
-        public static final int photo=0x7f02001d;
+        public static final int ic_action_photo=0x7f020018;
+        public static final int ic_launcher=0x7f020019;
+        public static final int ic_plusone_medium_off_client=0x7f02001a;
+        public static final int ic_plusone_small_off_client=0x7f02001b;
+        public static final int ic_plusone_standard_off_client=0x7f02001c;
+        public static final int ic_plusone_tall_off_client=0x7f02001d;
+        public static final int photo=0x7f02001e;
     }
     public static final class id {
-        public static final int buttonLike=0x7f05000e;
-        public static final int display_name=0x7f050009;
+        public static final int action_new=0x7f050019;
+        public static final int buttonLike=0x7f050018;
+        public static final int camera_photo_button=0x7f05000d;
+        public static final int camera_preview=0x7f05000b;
+        public static final int camera_surface_view=0x7f05000c;
+        public static final int cancel_button=0x7f050012;
+        public static final int display_name=0x7f05000a;
+        public static final int fragmentContainer=0x7f050009;
         public static final int hybrid=0x7f050004;
-        public static final int imageViewProfile=0x7f05000b;
+        public static final int imageViewProfile=0x7f050015;
+        public static final int meal_name=0x7f05000e;
+        public static final int meal_preview_image=0x7f050013;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int progressBar1=0x7f05000a;
+        public static final int photo_button=0x7f050010;
+        public static final int progressBar1=0x7f050014;
+        public static final int rating_spinner=0x7f05000f;
         public static final int revoke_access_button=0x7f050007;
         public static final int satellite=0x7f050002;
+        public static final int save_button=0x7f050011;
         public static final int sign_in_button=0x7f050005;
         public static final int sign_in_status=0x7f050008;
         public static final int sign_out_button=0x7f050006;
         public static final int terrain=0x7f050003;
-        public static final int textViewPost=0x7f05000d;
-        public static final int textViewUsername=0x7f05000c;
+        public static final int textViewPost=0x7f050017;
+        public static final int textViewUsername=0x7f050016;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
-        public static final int circle_member=0x7f030001;
-        public static final int loading_layout=0x7f030002;
-        public static final int widget_wall_feed=0x7f030003;
+        public static final int activity_new_post=0x7f030001;
+        public static final int circle_member=0x7f030002;
+        public static final int fragment_camera=0x7f030003;
+        public static final int fragment_new_post=0x7f030004;
+        public static final int loading_layout=0x7f030005;
+        public static final int widget_wall_feed=0x7f030006;
+    }
+    public static final class menu {
+        public static final int activity_meal_list=0x7f0b0000;
     }
     public static final class string {
         public static final int action_settings=0x7f06001b;
@@ -387,11 +408,11 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
+        public static final int AppTheme=0x7f0a0001;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.
