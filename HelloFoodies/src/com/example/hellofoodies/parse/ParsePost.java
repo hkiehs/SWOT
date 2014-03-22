@@ -33,6 +33,7 @@ public class ParsePost extends ParseObject {
 							BaseClassActivity.getContext(),
 							"Error saving: " + e.getMessage(),
 							Toast.LENGTH_SHORT).show();
+					//comment
 				}
 				
 			}
