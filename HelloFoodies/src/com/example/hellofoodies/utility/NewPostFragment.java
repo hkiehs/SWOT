@@ -1,6 +1,5 @@
 package com.example.hellofoodies.utility;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -19,12 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hellofoodies.R;
-import com.example.hellofoodies.activity.NewPostActivity;
-import com.example.hellofoodies.parse.ParsePost;
+import com.example.hellofoodies.activity.BaseClassActivity;
+import com.example.hellofoodies.parse.ParseReview;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
+import com.parse.ParseObject;
 import com.parse.SaveCallback;
 
 /*
@@ -36,7 +36,7 @@ import com.parse.SaveCallback;
  * preview at the bottom, which is a standalone
  * ParseImageView.
  */
-@SuppressLint("NewApi")
+//@SuppressLint("NewApi")
 public class NewPostFragment extends Fragment {
 
 	private ImageButton photoButton;
@@ -81,30 +81,31 @@ public class NewPostFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				ParsePost parsePost = ((NewPostActivity) getActivity()).getCurrentPost();
+				ParseReview parsePost = (ParseReview) ((BaseClassActivity) getActivity()).getParseObject();
 				parsePost.setFromName("Muneeb");
 				parsePost.setFromId("objectId");
 				parsePost.setMessage("Wow, Amazing Food");
 				parsePost.setType("Review");
 				parsePost.setRestaurantId("restaurantId");
+				parsePost.saveObjectInBackground(parsePost, "Review");
 
 				// If the user added a photo, that data will be
 				// added in the CameraFragment
 
 				// Save the post and return
-				parsePost.saveInBackground(new SaveCallback() {
-
-					@Override
-					public void done(ParseException e) {
-						if (e == null) {
-							getActivity().setResult(Activity.RESULT_OK);
-							getActivity().finish();
-						} else {
-							Toast.makeText(getActivity().getApplicationContext(), "Error saving: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-						}
-					}
-
-				});
+//				parsePost.saveInBackground(new SaveCallback() {
+//
+//					@Override
+//					public void done(ParseException e) {
+//						if (e == null) {
+//							getActivity().setResult(Activity.RESULT_OK);
+//							getActivity().finish();
+//						} else {
+//							Toast.makeText(getActivity().getApplicationContext(), "Error saving: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//						}
+//					}
+//
+//				});
 
 			}
 		});
@@ -151,7 +152,7 @@ public class NewPostFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		ParseFile photoFile = ((NewPostActivity) getActivity()).getCurrentPost().getPhoto();
+		ParseFile photoFile = ((ParseReview) ((BaseClassActivity) getActivity()).getParseObject()).getPhotoFile();
 		if (photoFile != null) {
 			mealPreview.setParseFile(photoFile);
 			mealPreview.loadInBackground(new GetDataCallback() {

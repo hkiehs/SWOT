@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.hellofoodies.R;
 import com.example.hellofoodies.utility.WallFeedAdapter;
@@ -39,12 +38,17 @@ public class WallFeedActivity extends ListActivity {
 				newMeal();
 				break;
 			}
+			
+			case R.id.action_picture :{
+				Intent i = new Intent(this, NewPictureActivity.class);
+				startActivityForResult(i, 0);
+			}
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
 	private void newMeal() {
-		Intent i = new Intent(this, NewPostActivity.class);
+		Intent i = new Intent(this, NewReviewActivity.class);
 		startActivityForResult(i, 0);
 	}
 }

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.hellofoodies.R;
 import com.example.hellofoodies.parse.ParsePost;
+import com.example.hellofoodies.parse.ParseReview;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -23,7 +24,7 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParsePost> {
 			public ParseQuery<ParsePost> create() {
 				ParseQuery<ParsePost> query = ParseQuery.getQuery(ParsePost.TABLE_NAME);
 				query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
-				query.orderByDescending(ParsePost.CREATED_AT);
+				query.orderByDescending(ParseReview.CREATED_AT);
 				return query;
 			}
 		});
@@ -33,13 +34,15 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParsePost> {
 	@Override
 	public View getItemView(ParsePost parsePost, View v, ViewGroup parent) {
 		if (v == null) {
-			v = View.inflate(getContext(), R.layout.widget_wall_feed, null);
+			v = View.inflate(getContext(), R.layout.review_wall_feed, null);
 		}
 		super.getItemView(parsePost, v, parent);
+		
+		ParseReview review = (ParseReview)parsePost;
 
 		ParseImageView profileImage = (ParseImageView) v.findViewById(R.id.imageViewProfile);
 		profileImage.setPlaceholder(context.getResources().getDrawable(R.drawable.photo));
-		ParseFile photoFile = parsePost.getParseFile(ParsePost.PHOTO);
+		ParseFile photoFile = parsePost.getParseFile(ParseReview.PHOTO);
 		if (photoFile != null) {
 			profileImage.setParseFile(photoFile);
 			profileImage.loadInBackground(new GetDataCallback() {
@@ -54,9 +57,9 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParsePost> {
 		TextView textViewPost = (TextView) v.findViewById(R.id.textViewPost);
 		Button buttonLike = (Button) v.findViewById(R.id.buttonLike);
 
-		username.setText(parsePost.getFromName());
-		textViewPost.setText(parsePost.getMessage());
-		buttonLike.setText(parsePost.getLikes() + "");
+		username.setText(review.getFromName());
+		textViewPost.setText(review.getMessage());
+		buttonLike.setText(review.getLikes() + "");
 
 		return v;
 	}

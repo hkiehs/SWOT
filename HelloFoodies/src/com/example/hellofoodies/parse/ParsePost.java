@@ -1,129 +1,100 @@
 package com.example.hellofoodies.parse;
 
-import com.parse.ParseClassName;
+import android.widget.Toast;
+
+import com.example.hellofoodies.activity.BaseClassActivity;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
-@ParseClassName("Post")
 public class ParsePost extends ParseObject {
+	
 	public static final String TABLE_NAME = "Post";
-
-	public static final String ID = "id";
-	public static final String MESSAGE = "message";
-	public static final String TYPE = "type";
-	public static final String LIKE = "like";
-	public static final String PICTURE = "picture";
-	public static final String LINK = "link";
-	public static final String ICON = "icon";
-	public static final String FROM_ID = "fromId";
-	public static final String FROM_NAME = "fromName";
-	public static final String RESTAURANT_ID = "restaurantId";
-	public static final String PHOTO = "photo";
-	public static final String CREATED_AT = "createdAt";
-
-	// Required parameters
-	private String restaurantId;
-	private String message;
-	private String type;
-	private String picture;
-	private String fromName;
-	private String fromId;
-	// Optional parameters - initialized to default values
-	private String id;
-	private String link;
-	private Boolean like;
-	private ParseFile photo;
-
-	public ParsePost() {
-		// A default constructor is required.
-	}
-
-	public String getId() {
-		return getString(ID);
-	}
-
-	public String getMessage() {
-		return getString(MESSAGE);
-	}
-
-	public String getType() {
-		return getString(TYPE);
-	}
-
-	public int getLikes() {
-		return getInt(LIKE);
-	}
-
-	public String getPicture() {
-		return getString(PICTURE);
-	}
-
-	public String getLink() {
-		return getString(LINK);
-	}
-
-	public String getIcon() {
-		return getString(ICON);
-	}
-
-	public String getFromName() {
-		return getString(FROM_NAME);
-	}
-
-	public String getFromId() {
-		return getString(FROM_ID);
-	}
-
-	public String getRestaurantId() {
-		return getString(RESTAURANT_ID);
-	}
-
-	public ParseFile getPhoto() {
-		return getParseFile(PHOTO);
-	}
-
-	public void setRestaurantId(String restaurantId) {
-		put(RESTAURANT_ID, ParseObject.createWithoutData(ParseRestaurant.TABLE_NAME, restaurantId));
-	}
-
-	public void setMessage(String message) {
-		put(MESSAGE, message);
-	}
-
-	public void setType(String type) {
-		put(TYPE, type);
-	}
-
-	public void setPicture(String picture) {
-		put(PICTURE, picture);
-	}
-
-	public void setFromName(String fromName) {
-		put(FROM_NAME, fromName);
-	}
-
-	public void setFromId(String fromId) {
-		put(FROM_ID, fromId);
-	}
-
-	public void setId(String id) {
-		put(ID, id);
-	}
-
-	public void setLink(String link) {
-		put(LINK, link);
-	}
-
-	public void setLike(Boolean like) {
-		if (like != null) {
-			if (like)
-				this.increment(LIKE);
-			else
-				this.increment(LIKE, -1);
-		}
-	}
-
-	public void setPhoto(ParseFile photo) {
-		put(PHOTO, photo);
-	}
+	private SaveCallback callBack;
+	private ParsePost parsePost;
+	private String postType;
+ 
+    public ParsePost() {
+        // A default constructor is required.
+    	callBack = new SaveCallback() {
+			
+    		@Override
+			public void done(ParseException e) {
+				if (e == null) {
+					Toast.makeText(
+							BaseClassActivity.getContext(),
+							"Successfull ",
+							Toast.LENGTH_SHORT).show();
+							saveToWall(parsePost, postType);
+				} else {
+					Toast.makeText(
+							BaseClassActivity.getContext(),
+							"Error saving: " + e.getMessage(),
+							Toast.LENGTH_SHORT).show();
+				}
+				
+			}
+		};
+    }
+ 
+    public String getTitle() {
+        return getString("title");
+    }
+ 
+    public void setTitle(String title) {
+        put("title", title);
+    }
+ 
+    public ParseUser getAuthor() {
+        return getParseUser("author");
+    }
+ 
+    public void setAuthor(ParseUser user) {
+        put("author", user);
+    }
+ 
+    public ParseFile getPhotoFile() {
+        return getParseFile("photo");
+    }
+ 
+    public void setPhotoFile(ParseFile file) {
+        put("photo", file);
+    }
+    
+    public void saveObjectInBackground(ParsePost post, String objectType)
+    {
+    	this.parsePost = post;
+    	this.postType = objectType;
+    	post.saveInBackground(callBack);
+    }
+    
+    public void saveToWall(ParsePost post, String objectType)
+    {   	
+    	ParseWallFeed wallFeed = new ParseWallFeed();
+    	wallFeed.setParseObjectType(objectType);
+    	wallFeed.setObjectId(post.getObjectId());
+    	
+    	wallFeed.saveInBackground(new SaveCallback() {
+    		
+    		@Override
+			public void done(ParseException e) {		
+    		if (e == null) {
+				Toast.makeText(
+						BaseClassActivity.getContext(),
+						"Successfull ",
+						Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(
+						BaseClassActivity.getContext(),
+						"Error saving: " + e.getMessage(),
+						Toast.LENGTH_SHORT).show();
+			}
+    		
+    	   }
+			
+		});
+    	
+    }
 }
