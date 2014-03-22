@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pictureFragmentContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    /> -->
+
+    
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="Picture Label"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/picture_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine" />
+
+    <Spinner
+        android:id="@+id/tags_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:id="@+id/picture_photo_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/photo" />
+
+    <Button
+        android:id="@+id/picture_save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/picture_cancel_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel" />
+
+    <com.parse.ParseImageView
+        android:id="@+id/picture_preview_image"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp" />
+
+</LinearLayout>
