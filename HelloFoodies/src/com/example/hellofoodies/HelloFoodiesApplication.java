@@ -5,11 +5,14 @@ import timber.log.Timber.DebugTree;
 import android.app.Application;
 
 import com.example.hellofoodies.parse.ParseComment;
-import com.example.hellofoodies.parse.ParsePost;
+import com.example.hellofoodies.parse.ParsePicture;
+import com.example.hellofoodies.parse.ParseReview;
 import com.example.hellofoodies.parse.ParseRestaurant;
+import com.example.hellofoodies.parse.ParseWallFeed;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 public class HelloFoodiesApplication extends Application {
 
@@ -20,9 +23,12 @@ public class HelloFoodiesApplication extends Application {
 		// register parse
 		ParseObject.registerSubclass(ParseRestaurant.class);
 		ParseObject.registerSubclass(ParseComment.class);
-		ParseObject.registerSubclass(ParsePost.class);
+		ParseObject.registerSubclass(ParseReview.class);
+		ParseObject.registerSubclass(ParsePicture.class);
+		ParseObject.registerSubclass(ParseWallFeed.class);
 
 		Parse.initialize(this, getString(R.string.parse_app_id), getString(R.string.parse_client_key));
+		ParseUser.enableAutomaticUser();
 
 		ParseACL defaultACL = new ParseACL();
 		defaultACL.setPublicReadAccess(true);

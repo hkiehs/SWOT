@@ -22,7 +22,9 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.hellofoodies.R;
-import com.example.hellofoodies.activity.NewPostActivity;
+import com.example.hellofoodies.activity.BaseClassActivity;
+import com.example.hellofoodies.parse.ParseReview;
+import com.example.hellofoodies.parse.ParsePost;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.SaveCallback;
@@ -157,10 +159,9 @@ public class CameraFragment extends Fragment {
 	 * until we reach that Fragment.
 	 */
 	private void addPhotoToMealAndReturn(ParseFile photoFile) {
-		((NewPostActivity) getActivity()).getCurrentPost().setPhoto(
-				photoFile);
+		((ParsePost) ((BaseClassActivity) getActivity()).getParseObject()).setPhotoFile(photoFile);
 		FragmentManager fm = getActivity().getFragmentManager();
-		fm.popBackStack("NewMealFragment",
+		fm.popBackStack("NewPostFragment",
 				FragmentManager.POP_BACK_STACK_INCLUSIVE);
 	}
 

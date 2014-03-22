@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.parse.ParseImageView
+        android:id="@+id/picture_wall_feed_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/picture_wall_feed_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/picture_wall_feed_profile" />
+
+    <com.parse.ParseImageView
+        android:id="@+id/picture_wall_feed_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/picture_wall_feed_username" />
+
+    <Button
+        android:id="@+id/picture_wall_feed_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/picture_wall_feed_photo" />
+
+</RelativeLayout>

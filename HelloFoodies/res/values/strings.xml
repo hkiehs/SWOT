@@ -32,5 +32,14 @@
         <item>1</item>
         <item></item>
     </string-array>
+    
+    <string-array name="tags_array">
+        <item>Loved it</item>
+        <item>Want it</item>
+        <item>Tried it</item>
+        <item>It was ok</item>
+        <item>Not for me</item>
+        <item></item>
+    </string-array>
 
 </resources>

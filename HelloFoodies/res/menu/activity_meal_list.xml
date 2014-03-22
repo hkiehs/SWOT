@@ -6,5 +6,12 @@
         android:showAsAction="ifRoom"
         android:title="@string/app_name">
     </item>
+    
+     <item
+        android:id="@+id/action_picture"
+        android:icon="@drawable/photo"
+        android:showAsAction="ifRoom"
+        android:title="@string/app_name">
+    </item>
 
 </menu>

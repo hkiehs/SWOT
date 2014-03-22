@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hellofoodies.R;
-import com.example.hellofoodies.activity.BaseClassActivity;
-import com.example.hellofoodies.parse.ParseReview;
+import com.example.hellofoodies.activity.NewPictureActivity;
+import com.example.hellofoodies.parse.ParsePicture;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
-import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 /*
@@ -36,15 +37,14 @@ import com.parse.SaveCallback;
  * preview at the bottom, which is a standalone
  * ParseImageView.
  */
-//@SuppressLint("NewApi")
-public class NewPostFragment extends Fragment {
+public class NewPictureFragment extends Fragment {
 
 	private ImageButton photoButton;
 	private Button saveButton;
 	private Button cancelButton;
-	private TextView mealName;
-	private Spinner mealRating;
-	private ParseImageView mealPreview;
+	private TextView pictureName;
+	private Spinner pictureTag;
+	private ParseImageView picturePreview;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,65 +52,75 @@ public class NewPostFragment extends Fragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle SavedInstanceState) {
-		View v = inflater.inflate(R.layout.fragment_new_post, parent, false);
+	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
+			Bundle SavedInstanceState) {
+		View v = inflater.inflate(R.layout.fragment_new_picture, parent, false);
 
-		mealName = ((EditText) v.findViewById(R.id.meal_name));
+		pictureName = ((EditText) v.findViewById(R.id.picture_name));
 
 		// The mealRating spinner lets people assign favorites of meals they've
 		// eaten.
 		// Meals with 4 or 5 ratings will appear in the Favorites view.
-		mealRating = ((Spinner) v.findViewById(R.id.rating_spinner));
-		ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.ratings_array,
-				android.R.layout.simple_spinner_dropdown_item);
-		mealRating.setAdapter(spinnerAdapter);
+		pictureTag = ((Spinner) v.findViewById(R.id.tags_spinner));
+		ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter
+				.createFromResource(getActivity(), R.array.tags_array,
+						android.R.layout.simple_spinner_dropdown_item);
+		pictureTag.setAdapter(spinnerAdapter);
 
-		photoButton = ((ImageButton) v.findViewById(R.id.photo_button));
+		photoButton = ((ImageButton) v.findViewById(R.id.picture_photo_button));
 		photoButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(mealName.getWindowToken(), 0);
+				InputMethodManager imm = (InputMethodManager) getActivity()
+						.getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(pictureName.getWindowToken(), 0);
 				startCamera();
 			}
 		});
 
-		saveButton = ((Button) v.findViewById(R.id.save_button));
+		saveButton = ((Button) v.findViewById(R.id.picture_save_button));
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				ParseReview parsePost = (ParseReview) ((BaseClassActivity) getActivity()).getParseObject();
-				parsePost.setFromName("Muneeb");
-				parsePost.setFromId("objectId");
-				parsePost.setMessage("Wow, Amazing Food");
-				parsePost.setType("Review");
-				parsePost.setRestaurantId("restaurantId");
-				parsePost.saveObjectInBackground(parsePost, "Review");
+				ParsePicture picture = (ParsePicture)((NewPictureActivity) getActivity()).getParseObject();
+
+				// When the user clicks "Save," upload the meal to Parse
+				// Add data to the meal object:
+				picture.setTitle(pictureName.getText().toString());
+
+				// Associate the meal with the current user
+				picture.setAuthor(ParseUser.getCurrentUser());
+
+				// Add the rating
+				picture.setTag(pictureTag.getSelectedItem().toString());
 
 				// If the user added a photo, that data will be
 				// added in the CameraFragment
 
-				// Save the post and return
-//				parsePost.saveInBackground(new SaveCallback() {
-//
-//					@Override
-//					public void done(ParseException e) {
-//						if (e == null) {
-//							getActivity().setResult(Activity.RESULT_OK);
-//							getActivity().finish();
-//						} else {
-//							Toast.makeText(getActivity().getApplicationContext(), "Error saving: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//						}
-//					}
-//
-//				});
+				// Save the meal and return
+				picture.saveInBackground(new SaveCallback() {
+
+					@Override
+					public void done(ParseException e) {
+						if (e == null) {
+							getActivity().setResult(Activity.RESULT_OK);
+							getActivity().finish();
+						} else {
+							Toast.makeText(
+									getActivity().getApplicationContext(),
+									"Error saving: " + e.getMessage(),
+									Toast.LENGTH_SHORT).show();
+						}
+					}
+
+				});
 
 			}
 		});
 
-		cancelButton = ((Button) v.findViewById(R.id.cancel_button));
+		cancelButton = ((Button) v.findViewById(R.id.picture_cancel_button));
 		cancelButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -121,8 +131,8 @@ public class NewPostFragment extends Fragment {
 		});
 
 		// Until the user has taken a photo, hide the preview
-		mealPreview = (ParseImageView) v.findViewById(R.id.meal_preview_image);
-		mealPreview.setVisibility(View.INVISIBLE);
+		picturePreview = (ParseImageView) v.findViewById(R.id.picture_preview_image);
+		picturePreview.setVisibility(View.INVISIBLE);
 
 		return v;
 	}
@@ -138,9 +148,10 @@ public class NewPostFragment extends Fragment {
 	 */
 	public void startCamera() {
 		Fragment cameraFragment = new CameraFragment();
-		FragmentTransaction transaction = getActivity().getFragmentManager().beginTransaction();
+		FragmentTransaction transaction = getActivity().getFragmentManager()
+				.beginTransaction();
 		transaction.replace(R.id.fragmentContainer, cameraFragment);
-		transaction.addToBackStack("NewPostFragment");
+		transaction.addToBackStack("NewPictureFragment");
 		transaction.commit();
 	}
 
@@ -152,13 +163,13 @@ public class NewPostFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		ParseFile photoFile = ((ParseReview) ((BaseClassActivity) getActivity()).getParseObject()).getPhotoFile();
+		ParseFile photoFile = ((ParsePicture) ((NewPictureActivity) getActivity()).getParseObject()).getPhotoFile();
 		if (photoFile != null) {
-			mealPreview.setParseFile(photoFile);
-			mealPreview.loadInBackground(new GetDataCallback() {
+			picturePreview.setParseFile(photoFile);
+			picturePreview.loadInBackground(new GetDataCallback() {
 				@Override
 				public void done(byte[] data, ParseException e) {
-					mealPreview.setVisibility(View.VISIBLE);
+					picturePreview.setVisibility(View.VISIBLE);
 				}
 			});
 		}

@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.hellofoodies.R;
-import com.example.hellofoodies.parse.ParsePost;
+import com.example.hellofoodies.parse.ParseReview;
 import com.example.hellofoodies.utility.NewPostFragment;
 
 /*
@@ -16,20 +16,22 @@ import com.example.hellofoodies.utility.NewPostFragment;
  * data entry and capturing a photo of a given meal.
  * The Activity manages the overall meal data.
  */
-public class NewPostActivity extends Activity {
+public class NewReviewActivity extends BaseClassActivity {
 
-	private ParsePost parsePost;
+	private ParseReview parsePost;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		parsePost = new ParsePost();
+		
+		parsePost = new ParseReview();
+		super.setParseObject(parsePost);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		super.onCreate(savedInstanceState);
 
 		// Begin with main data entry view,
 		// NewMealFragment
-		setContentView(R.layout.activity_new_post);
+		setContentView(R.layout.activity_new_review);
 		FragmentManager manager = getFragmentManager();
 		Fragment fragment = manager.findFragmentById(R.id.fragmentContainer);
 
@@ -39,8 +41,8 @@ public class NewPostActivity extends Activity {
 		}
 	}
 
-	public ParsePost getCurrentPost() {
+	/*public ParsePost getCurrentPost() {
 		return parsePost;
-	}
+	}*/
 
 }
