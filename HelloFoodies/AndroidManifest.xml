@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.WallFeedActivity" />
-        <activity android:name=".activity.NewPostActivity" />
+         <activity android:name=".activity.BaseClassActivity" />
         <activity android:name=".activity.NewPictureActivity" />
         <activity android:name=".activity.NewReviewActivity" />
         

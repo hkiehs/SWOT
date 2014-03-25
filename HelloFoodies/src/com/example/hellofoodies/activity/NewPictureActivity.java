@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -58,7 +59,7 @@ public class NewPictureActivity extends BaseClassActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
- 
+        Log.d("Picture", "Picture class");
         // Begin with main data entry view,
         // NewMealFragment
         setContentView(R.layout.activity_new_picture);
@@ -110,7 +111,7 @@ public class NewPictureActivity extends BaseClassActivity {
 				picture.setAuthor(ParseUser.getCurrentUser());
 
 				// Add the rating
-				picture.setTag(pictureTag.getSelectedItem().toString());	
+				picture.setRating(pictureTag.getSelectedItem().toString());	
 				
 				//Add picture
 				picture.setPhotoFile(photoFile);
@@ -155,7 +156,7 @@ public class NewPictureActivity extends BaseClassActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		ParseFile photoFile = ((ParsePicture) getParseObject()).getPhotoFile();
+		//ParseFile photoFile = ((ParsePicture) getParseObject()).getPhotoFile();
 		if (photoFile != null) {
 			picturePreview.setParseFile(photoFile);
 			picturePreview.loadInBackground(new GetDataCallback() {

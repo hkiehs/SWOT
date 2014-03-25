@@ -10,14 +10,15 @@ import com.example.hellofoodies.R;
 import com.example.hellofoodies.utility.WallFeedAdapter;
 
 public class WallFeedActivity extends ListActivity {
-	private static final String LOG_TAG = "WallFeedActivity";
-
+//	private static final String LOG_TAG = "WallFeedActivity";
+	
 	private WallFeedAdapter wallFeedAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		wallFeedAdapter = new WallFeedAdapter(this);
+					
+		WallFeedAdapter wallFeedAdapter = new WallFeedAdapter(this);
 		setListAdapter(wallFeedAdapter);
 	}
 
@@ -42,6 +43,7 @@ public class WallFeedActivity extends ListActivity {
 			case R.id.action_picture :{
 				Intent i = new Intent(this, NewPictureActivity.class);
 				startActivityForResult(i, 0);
+				break;
 			}
 		}
 		return super.onOptionsItemSelected(item);

@@ -40,6 +40,7 @@ public class BaseClassActivity extends Activity {
 	public static Context getContext()
 	{
 		return context;
+		
 	}
 		
 	public void setParseObject(ParsePost parseObj) {

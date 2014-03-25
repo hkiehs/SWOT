@@ -20,6 +20,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/picture_wall_feed_username" />
+    
+        <TextView
+        android:id="@+id/picture_wall_feed_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/picture_wall_feed_photo" />
 
     <Button
         android:id="@+id/picture_wall_feed_tag"

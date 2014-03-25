@@ -82,11 +82,11 @@ public class NewPostFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				ParseReview parsePost = (ParseReview) ((BaseClassActivity) getActivity()).getParseObject();
-				parsePost.setFromName("Muneeb");
-				parsePost.setFromId("objectId");
-				parsePost.setMessage("Wow, Amazing Food");
-				parsePost.setType("Review");
-				parsePost.setRestaurantId("restaurantId");
+//				parsePost.setFromName("Muneeb");
+//				parsePost.setFromId("objectId");
+//				parsePost.setMessage("Wow, Amazing Food");
+//				parsePost.setType("Review");
+//				parsePost.setRestaurantId("restaurantId");
 				parsePost.saveObjectInBackground(parsePost, "Review");
 
 				// If the user added a photo, that data will be
@@ -139,7 +139,7 @@ public class NewPostFragment extends Fragment {
 	public void startCamera() {
 		Fragment cameraFragment = new CameraFragment();
 		FragmentTransaction transaction = getActivity().getFragmentManager().beginTransaction();
-		transaction.replace(R.id.fragmentContainer, cameraFragment);
+		//transaction.replace(R.id.fragmentContainer, cameraFragment);
 		transaction.addToBackStack("NewPostFragment");
 		transaction.commit();
 	}

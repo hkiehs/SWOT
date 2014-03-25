@@ -195,7 +195,7 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 		// on successful login move to wall feed activity
 		startActivity(new Intent(this, WallFeedActivity.class));
 		//startActivity(new Intent(this, NewPictureActivity.class));
-		//LoginActivity.this.finish();
+		LoginActivity.this.finish();
 	}
 
 	/*
