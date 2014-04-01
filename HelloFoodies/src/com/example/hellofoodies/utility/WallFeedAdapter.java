@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.hellofoodies.R;
+import com.example.hellofoodies.parse.ParseComment;
 import com.example.hellofoodies.parse.ParsePost;
 import com.example.hellofoodies.parse.ParseReview;
 import com.parse.GetCallback;
@@ -16,6 +17,7 @@ import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
@@ -38,17 +40,17 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParsePost> {
 	}
 
 	@Override
-	public View getItemView(ParsePost parsePost, View v, ViewGroup parent) {
-		super.getItemView(parsePost, v, parent);
+	public View getItemView(final ParsePost mParsePost, View v, ViewGroup parent) {
+		super.getItemView(mParsePost, v, parent);
 		if (v == null) {
 			v = View.inflate(getContext(), R.layout.review_wall_feed, null);
 		}
 
-		ParseReview review = (ParseReview) parsePost;
+		ParseReview review = (ParseReview) mParsePost;
 
 		ParseImageView profileImage = (ParseImageView) v.findViewById(R.id.imageViewProfile);
 		profileImage.setPlaceholder(context.getResources().getDrawable(R.drawable.photo));
-		ParseFile photoFile = parsePost.getParseFile(ParseReview.PHOTO);
+		ParseFile photoFile = mParsePost.getParseFile(ParseReview.PHOTO);
 		if (photoFile != null) {
 			profileImage.setParseFile(photoFile);
 			profileImage.loadInBackground(new GetDataCallback() {
@@ -66,7 +68,7 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParsePost> {
 		username.setText(review.getFromName());
 		textViewPost.setText(review.getMessage());
 		buttonLike.setText(review.getLikes() + "");
-		buttonLike.setTag(parsePost);
+		buttonLike.setTag(mParsePost);
 
 		buttonLike.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -78,7 +80,6 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParsePost> {
 				query.getInBackground(parsePost.getObjectId(), new GetCallback<ParsePost>() {
 					public void done(ParsePost parsePost, ParseException e) {
 						if (e == null) {
-							
 							ParseACL postACL = new ParseACL(ParseUser.getCurrentUser());
 							postACL.setPublicReadAccess(true);
 							postACL.setPublicWriteAccess(true);
@@ -98,9 +99,34 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParsePost> {
 						}
 					}
 				});
+			}
+		});
+		
+		Button comment = (Button) v.findViewById(R.id.buttonComment);
+		comment.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				ParseComment parseComment = new ParseComment();
+				
+				parseComment.put("postId", ParseObject.createWithoutData("POST", mParsePost.getObjectId()));
+				parseComment.put("comment", "Jhonny Brovo... <)");
+				parseComment.saveInBackground(new SaveCallback() {
+					@Override
+					public void done(ParseException e) {
+						if (e==null) {
+						Log.d(LOG_TAG, "Comment saved");
+						} else {
+							e.printStackTrace();
+						}
+						
+					}
+				});
 
 			}
 		});
+		
+		
 
 		return v;
 	}
