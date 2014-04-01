@@ -10,7 +10,6 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 public class ParsePost extends ParseObject {
-	
 	public static final String TABLE_NAME = "Post";
 	private SaveCallback callBack;
 	private ParsePost parsePost;

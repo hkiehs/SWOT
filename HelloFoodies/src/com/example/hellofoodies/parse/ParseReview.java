@@ -1,12 +1,11 @@
 package com.example.hellofoodies.parse;
 
 import com.parse.ParseClassName;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 @ParseClassName("Post")
 public class ParseReview extends ParsePost {
-//	public static final String TABLE_NAME = "Post";
+	// public static final String TABLE_NAME = "Post";
 
 	public static final String ID = "id";
 	public static final String MESSAGE = "message";
@@ -20,19 +19,6 @@ public class ParseReview extends ParsePost {
 	public static final String RESTAURANT_ID = "restaurantId";
 	public static final String PHOTO = "photo";
 	public static final String CREATED_AT = "createdAt";
-
-	// Required parameters
-	private String restaurantId;
-	private String message;
-	private String type;
-	private ParseFile picture;
-	private String fromName;
-	private String fromId;
-	// Optional parameters - initialized to default values
-	private String id;
-	private String link;
-	private Boolean like;
-	private ParseFile photo;
 
 	public ParseReview() {
 		// A default constructor is required.
@@ -78,9 +64,9 @@ public class ParseReview extends ParsePost {
 		return getString(RESTAURANT_ID);
 	}
 
-	/*public ParseFile getPhotoFile() {
-		return getParseFile(PHOTO);
-	}*/
+	/*
+	 * public ParseFile getPhotoFile() { return getParseFile(PHOTO); }
+	 */
 
 	public void setRestaurantId(String restaurantId) {
 		put(RESTAURANT_ID, ParseObject.createWithoutData(ParseRestaurant.TABLE_NAME, restaurantId));
@@ -123,7 +109,7 @@ public class ParseReview extends ParsePost {
 		}
 	}
 
-	/*public void setPhotoFile(ParseFile photo) {
-		put(PHOTO, photo);
-	}*/
+	/*
+	 * public void setPhotoFile(ParseFile photo) { put(PHOTO, photo); }
+	 */
 }

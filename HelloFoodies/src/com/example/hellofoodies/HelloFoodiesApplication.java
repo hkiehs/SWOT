@@ -32,6 +32,7 @@ public class HelloFoodiesApplication extends Application {
 
 		ParseACL defaultACL = new ParseACL();
 		defaultACL.setPublicReadAccess(true);
+		defaultACL.setPublicWriteAccess(true);
 		ParseACL.setDefaultACL(defaultACL, true);
 
 		// initialize timber
