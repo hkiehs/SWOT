@@ -37,10 +37,8 @@ public class BaseClassActivity extends Activity {
 		context = getApplicationContext();
 	}
 	
-	public static Context getContext()
-	{
-		return context;
-		
+	public static Context getContext()	{
+		return context;		
 	}
 		
 	public void setParseObject(ParsePost parseObj) {

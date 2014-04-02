@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.hellofoodies.DummyActivity;
 import com.example.hellofoodies.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -194,6 +195,7 @@ public class LoginActivity extends FragmentActivity implements ConnectionCallbac
 
 		// on successful login move to wall feed activity
 		startActivity(new Intent(this, WallFeedActivity.class));
+		//startActivity(new Intent(this, DummyActivity.class));
 		//startActivity(new Intent(this, NewPictureActivity.class));
 		LoginActivity.this.finish();
 	}

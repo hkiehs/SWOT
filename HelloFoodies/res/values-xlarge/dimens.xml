@@ -5,6 +5,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     
     
-    <dimen name="post_a_pic_text_size">25dip</dimen>
+    <dimen name="post_a_pic_text_size">45dip</dimen>
 
 </resources>

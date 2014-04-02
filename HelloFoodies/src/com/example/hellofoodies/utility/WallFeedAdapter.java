@@ -50,32 +50,6 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParseObject> {
 				wallQuery.include("ReviewID");
 				wallQuery.include("PictureID");
 				
-//				wallQuery.findInBackground(new FindCallback<ParseObject>() {
-//				  public void done(List<ParseObject> postList, ParseException e) {
-//				    // commentList now contains the last ten comments, and the "post"
-//				    // field has been populated. For example:
-//				    for (ParseObject fetchedpost : postList) {
-//				      // This does not require a network access.
-//				    	ParseWallFeed wallPost = (ParseWallFeed)fetchedpost;
-//				    	if(wallPost.getParseObjectType().contentEquals("Picture"))
-//				    	{
-//				    		//picture = (ParsePicture) fetchedpost.getParseObject("PictureID");
-//				    		customList.add((ParsePicture) fetchedpost.getParseObject("PictureID"));
-//				    	}
-//				    	else
-//				    	{
-//				    		//review = (ParseReview) fetchedpost.getParseObject("ReviewID");
-//				    		customList.add((ParseReview) fetchedpost.getParseObject("ReviewID"));
-//				    	}
-//				    	
-//				      Log.d("post", "retrieved a related post");
-//				    }
-//				  }
-//				});
-				
-				//ParseQuery<ParsePost> query = ParseQuery.getQuery(ParseReview.TABLE_NAME);
-				//query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
-				//query.orderByDescending(ParseReview.CREATED_AT);
 				return wallQuery;
 				
 				
@@ -108,13 +82,12 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParseObject> {
 				v = View.inflate(getContext(), R.layout.review_wall_feed, null);
 				review = (ParseReview) wallPost.getParseObject("ReviewID");
 				profileImage = (ParseImageView) v.findViewById(R.id.imageViewProfile);
-//				photoFile = wallPost.getParseFile(ParseReview.PHOTO);
+				//photoFile = wallPost.getParseFile(ParseReview.PHOTO);
 				photoFile = review.getPhotoFile();
 
 				username = (TextView) v.findViewById(R.id.textViewUsername);
 				textViewPost = (TextView) v.findViewById(R.id.textViewPost);
 				buttonLike = (Button) v.findViewById(R.id.buttonLike);
-
 			}
 		}
 		super.getItemView(parsePost, v, parent);		

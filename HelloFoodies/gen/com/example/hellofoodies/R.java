@@ -185,6 +185,10 @@ containing a value of this type.
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
+ Default screen margins, per the Android Design guidelines. 
+ Default screen margins, per the Android Design guidelines. 
+ Default screen margins, per the Android Design guidelines. 
+ Default screen margins, per the Android Design guidelines. 
 
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
@@ -192,51 +196,76 @@ containing a value of this type.
          */
         public static final int activity_horizontal_margin=0x7f080000;
         public static final int activity_vertical_margin=0x7f080001;
+        public static final int picture_left_margin=0x7f080003;
+        public static final int picture_right_margin=0x7f080005;
+        public static final int picture_top_margin=0x7f080004;
+        public static final int post_a_pic_add_title=0x7f080006;
+        public static final int post_a_pic_margin_cat=0x7f080007;
+        public static final int post_a_pic_text_size=0x7f080002;
     }
     public static final class drawable {
-        public static final int common_signin_btn_icon_dark=0x7f020000;
-        public static final int common_signin_btn_icon_disabled_dark=0x7f020001;
-        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020002;
-        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020003;
-        public static final int common_signin_btn_icon_disabled_light=0x7f020004;
-        public static final int common_signin_btn_icon_focus_dark=0x7f020005;
-        public static final int common_signin_btn_icon_focus_light=0x7f020006;
-        public static final int common_signin_btn_icon_light=0x7f020007;
-        public static final int common_signin_btn_icon_normal_dark=0x7f020008;
-        public static final int common_signin_btn_icon_normal_light=0x7f020009;
-        public static final int common_signin_btn_icon_pressed_dark=0x7f02000a;
-        public static final int common_signin_btn_icon_pressed_light=0x7f02000b;
-        public static final int common_signin_btn_text_dark=0x7f02000c;
-        public static final int common_signin_btn_text_disabled_dark=0x7f02000d;
-        public static final int common_signin_btn_text_disabled_focus_dark=0x7f02000e;
-        public static final int common_signin_btn_text_disabled_focus_light=0x7f02000f;
-        public static final int common_signin_btn_text_disabled_light=0x7f020010;
-        public static final int common_signin_btn_text_focus_dark=0x7f020011;
-        public static final int common_signin_btn_text_focus_light=0x7f020012;
-        public static final int common_signin_btn_text_light=0x7f020013;
-        public static final int common_signin_btn_text_normal_dark=0x7f020014;
-        public static final int common_signin_btn_text_normal_light=0x7f020015;
-        public static final int common_signin_btn_text_pressed_dark=0x7f020016;
-        public static final int common_signin_btn_text_pressed_light=0x7f020017;
-        public static final int ic_action_photo=0x7f020018;
-        public static final int ic_launcher=0x7f020019;
-        public static final int ic_plusone_medium_off_client=0x7f02001a;
-        public static final int ic_plusone_small_off_client=0x7f02001b;
-        public static final int ic_plusone_standard_off_client=0x7f02001c;
-        public static final int ic_plusone_tall_off_client=0x7f02001d;
-        public static final int photo=0x7f02001e;
+        public static final int addpic=0x7f020000;
+        public static final int addpic2=0x7f020001;
+        public static final int back_btn=0x7f020002;
+        public static final int bg=0x7f020003;
+        public static final int common_signin_btn_icon_dark=0x7f020004;
+        public static final int common_signin_btn_icon_disabled_dark=0x7f020005;
+        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020006;
+        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020007;
+        public static final int common_signin_btn_icon_disabled_light=0x7f020008;
+        public static final int common_signin_btn_icon_focus_dark=0x7f020009;
+        public static final int common_signin_btn_icon_focus_light=0x7f02000a;
+        public static final int common_signin_btn_icon_light=0x7f02000b;
+        public static final int common_signin_btn_icon_normal_dark=0x7f02000c;
+        public static final int common_signin_btn_icon_normal_light=0x7f02000d;
+        public static final int common_signin_btn_icon_pressed_dark=0x7f02000e;
+        public static final int common_signin_btn_icon_pressed_light=0x7f02000f;
+        public static final int common_signin_btn_text_dark=0x7f020010;
+        public static final int common_signin_btn_text_disabled_dark=0x7f020011;
+        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020012;
+        public static final int common_signin_btn_text_disabled_focus_light=0x7f020013;
+        public static final int common_signin_btn_text_disabled_light=0x7f020014;
+        public static final int common_signin_btn_text_focus_dark=0x7f020015;
+        public static final int common_signin_btn_text_focus_light=0x7f020016;
+        public static final int common_signin_btn_text_light=0x7f020017;
+        public static final int common_signin_btn_text_normal_dark=0x7f020018;
+        public static final int common_signin_btn_text_normal_light=0x7f020019;
+        public static final int common_signin_btn_text_pressed_dark=0x7f02001a;
+        public static final int common_signin_btn_text_pressed_light=0x7f02001b;
+        public static final int done_btn=0x7f02001c;
+        public static final int ic_action_photo=0x7f02001d;
+        public static final int ic_launcher=0x7f02001e;
+        public static final int ic_plusone_medium_off_client=0x7f02001f;
+        public static final int ic_plusone_small_off_client=0x7f020020;
+        public static final int ic_plusone_standard_off_client=0x7f020021;
+        public static final int ic_plusone_tall_off_client=0x7f020022;
+        public static final int imagesize=0x7f020023;
+        public static final int itsok=0x7f020024;
+        public static final int itsok_pressed=0x7f020025;
+        public static final int likeit=0x7f020026;
+        public static final int likeit_pressed=0x7f020027;
+        public static final int loveit=0x7f020028;
+        public static final int loveit_pressed=0x7f020029;
+        public static final int notforme=0x7f02002a;
+        public static final int notforme_pressed=0x7f02002b;
+        public static final int photo=0x7f02002c;
+        public static final int postapicture=0x7f02002d;
+        public static final int replace=0x7f02002e;
+        public static final int replacebg=0x7f02002f;
+        public static final int typingbar=0x7f020030;
     }
     public static final class id {
-        public static final int action_new=0x7f050023;
-        public static final int action_picture=0x7f050024;
-        public static final int buttonLike=0x7f050022;
+        public static final int action_new=0x7f05002d;
+        public static final int action_picture=0x7f05002e;
+        public static final int action_settings=0x7f05002f;
+        public static final int buttonLike=0x7f05002c;
         public static final int camera_photo_button=0x7f050018;
         public static final int camera_preview=0x7f050016;
         public static final int camera_surface_view=0x7f050017;
         public static final int cancel_button=0x7f050013;
         public static final int display_name=0x7f050015;
         public static final int hybrid=0x7f050004;
-        public static final int imageViewProfile=0x7f05001f;
+        public static final int imageViewProfile=0x7f050029;
         public static final int meal_name=0x7f05000f;
         public static final int meal_preview_image=0x7f050014;
         public static final int none=0x7f050000;
@@ -252,6 +281,16 @@ containing a value of this type.
         public static final int picture_wall_feed_profile=0x7f05001a;
         public static final int picture_wall_feed_tag=0x7f05001e;
         public static final int picture_wall_feed_username=0x7f05001b;
+        public static final int post_a_pic__add_pic=0x7f050022;
+        public static final int post_a_pic_add_title=0x7f050023;
+        public static final int post_a_pic_back_button=0x7f05001f;
+        public static final int post_a_pic_done_button=0x7f050021;
+        public static final int post_a_pic_its_ok=0x7f050027;
+        public static final int post_a_pic_liked_it=0x7f050026;
+        public static final int post_a_pic_location=0x7f050024;
+        public static final int post_a_pic_loved_it=0x7f050025;
+        public static final int post_a_pic_not_for_me=0x7f050028;
+        public static final int post_a_pic_text=0x7f050020;
         public static final int progressBar1=0x7f050019;
         public static final int rating_spinner=0x7f050010;
         public static final int revoke_access_button=0x7f050007;
@@ -262,26 +301,29 @@ containing a value of this type.
         public static final int sign_out_button=0x7f050006;
         public static final int tags_spinner=0x7f05000a;
         public static final int terrain=0x7f050003;
-        public static final int textViewPost=0x7f050021;
-        public static final int textViewUsername=0x7f050020;
+        public static final int textViewPost=0x7f05002b;
+        public static final int textViewUsername=0x7f05002a;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
     }
     public static final class layout {
-        public static final int activity_login=0x7f030000;
-        public static final int activity_new_picture=0x7f030001;
-        public static final int activity_new_review=0x7f030002;
-        public static final int circle_member=0x7f030003;
-        public static final int fragment_camera=0x7f030004;
-        public static final int fragment_new_picture=0x7f030005;
-        public static final int fragment_new_post=0x7f030006;
-        public static final int loading_layout=0x7f030007;
-        public static final int picture_wall_feed=0x7f030008;
-        public static final int review_wall_feed=0x7f030009;
+        public static final int activity_dummy=0x7f030000;
+        public static final int activity_login=0x7f030001;
+        public static final int activity_new_picture=0x7f030002;
+        public static final int activity_new_review=0x7f030003;
+        public static final int circle_member=0x7f030004;
+        public static final int fragment_camera=0x7f030005;
+        public static final int fragment_new_picture=0x7f030006;
+        public static final int fragment_new_post=0x7f030007;
+        public static final int loading_layout=0x7f030008;
+        public static final int picture_wall_feed=0x7f030009;
+        public static final int postpicture=0x7f03000a;
+        public static final int review_wall_feed=0x7f03000b;
     }
     public static final class menu {
         public static final int activity_meal_list=0x7f0b0000;
+        public static final int dummy=0x7f0b0001;
     }
     public static final class string {
         public static final int action_settings=0x7f06001b;
@@ -397,6 +439,7 @@ containing a value of this type.
         public static final int status_sign_in_required=0x7f060020;
         public static final int status_signed_out=0x7f060024;
         public static final int status_signing_in=0x7f060023;
+        public static final int title_activity_dummy=0x7f06002e;
         /**  Used if there was an error loading the signed in user's name. 
          */
         public static final int unknown_person=0x7f060028;

@@ -6,5 +6,10 @@
     
     
     <dimen name="post_a_pic_text_size">25dip</dimen>
+    <dimen name="picture_left_margin">15dip</dimen>
+    <dimen name="picture_top_margin">10dip</dimen>
+    <dimen name="picture_right_margin">15dip</dimen>
+    <dimen name="post_a_pic_add_title">3dip</dimen>
+    <dimen name="post_a_pic_margin_cat">7dip</dimen>
 
 </resources>
