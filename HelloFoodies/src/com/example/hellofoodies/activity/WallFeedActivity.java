@@ -11,46 +11,46 @@ import com.example.hellofoodies.utility.WallFeedAdapter;
 
 public class WallFeedActivity extends ListActivity {
 //	private static final String LOG_TAG = "WallFeedActivity";
-	
-	private WallFeedAdapter wallFeedAdapter;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-					
-		WallFeedAdapter wallFeedAdapter = new WallFeedAdapter(this);
-		setListAdapter(wallFeedAdapter);
-	}
+    private WallFeedAdapter wallFeedAdapter;
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_meal_list, menu);
-		return true;
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-	/*
-	 * Posting meals and refreshing the list will be controlled from the Action
-	 * Bar.
-	 */
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.action_new : {
-				newMeal();
-				break;
-			}
-			
-			case R.id.action_picture :{
-				Intent i = new Intent(this, NewPictureActivity.class);
-				startActivityForResult(i, 0);
-				break;
-			}
-		}
-		return super.onOptionsItemSelected(item);
-	}
+        WallFeedAdapter wallFeedAdapter = new WallFeedAdapter(this);
+        setListAdapter(wallFeedAdapter);
+    }
 
-	private void newMeal() {
-		Intent i = new Intent(this, NewReviewActivity.class);
-		startActivityForResult(i, 0);
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_meal_list, menu);
+        return true;
+    }
+
+    /*
+     * Posting meals and refreshing the list will be controlled from the Action
+     * Bar.
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_new: {
+                newMeal();
+                break;
+            }
+
+            case R.id.action_picture: {
+                Intent i = new Intent(this, NewPictureActivity.class);
+                startActivityForResult(i, 0);
+                break;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void newMeal() {
+        Intent i = new Intent(this, NewReviewActivity.class);
+        startActivityForResult(i, 0);
+    }
 }

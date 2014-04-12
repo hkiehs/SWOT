@@ -4,11 +4,11 @@ import com.parse.ParseClassName;
 
 @ParseClassName("Review")
 public class ParseReview extends ParsePost {
-	public static final String TABLE_NAME = "Review";
-	public static final String REVIEW = "restaurantReview";
-//	public static final String MESSAGE = "message";
+    public static final String TABLE_NAME = "Review";
+    public static final String REVIEW = "restaurantReview";
+    //	public static final String MESSAGE = "message";
 //	public static final String TYPE = "type";
-	public static final String LIKE = "like";
+    public static final String LIKE = "like";
 //	public static final String PICTURE = "picture";
 //	public static final String LINK = "link";
 //	public static final String ICON = "icon";
@@ -18,9 +18,9 @@ public class ParseReview extends ParsePost {
 //	public static final String PHOTO = "photo";
 //	public static final String CREATED_AT = "createdAt";
 
-	public ParseReview() {
-		// A default constructor is required.
-	}
+    public ParseReview() {
+        // A default constructor is required.
+    }
 
 
 //	public String getId() {
@@ -109,6 +109,6 @@ public class ParseReview extends ParsePost {
 //	}
 
 	/*
-	 * public void setPhotoFile(ParseFile photo) { put(PHOTO, photo); }
+     * public void setPhotoFile(ParseFile photo) { put(PHOTO, photo); }
 	 */
 }

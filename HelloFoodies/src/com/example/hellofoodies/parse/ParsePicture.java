@@ -6,14 +6,14 @@ import com.parse.ParseClassName;
 
 @ParseClassName("Picture")
 public class ParsePicture extends ParsePost {
-	
-	public static final String TABLE_NAME = "Picture";
- 
+
+    public static final String TABLE_NAME = "Picture";
+
     public ParsePicture() {
         // A default constructor is required.
-    	Log.d("Picture", "Picture class");
-    } 
-    
+        Log.d("Picture", "Picture class");
+    }
+
 //    public String getTag() {
 //        return getString("tag");
 //    }
