@@ -33,4 +33,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/picture_wall_feed_photo" />
 
+    <Button android:id="@+id/buttonLike" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_below="@+id/picture_wall_feed_tag" />
+
+    <Button android:id="@+id/buttonComment" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_below="@+id/buttonLike"
+        android:text="Comment" />
+
 </RelativeLayout>
