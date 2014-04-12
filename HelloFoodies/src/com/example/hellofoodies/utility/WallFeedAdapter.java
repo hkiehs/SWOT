@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.example.hellofoodies.R;
 import com.example.hellofoodies.parse.ParseComment;
 import com.example.hellofoodies.parse.ParsePicture;
-import com.example.hellofoodies.parse.ParsePost;
 import com.example.hellofoodies.parse.ParseReview;
 import com.example.hellofoodies.parse.ParseWallFeed;
 import com.parse.GetCallback;
@@ -60,10 +59,10 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParseObject> {
     }
 
     @Override
-    public View getItemView(final ParseObject parsePost, View v, ViewGroup parent) {
-        super.getItemView(parsePost, v, parent);
+    public View getItemView(final ParseObject parseObject, View v, ViewGroup parent) {
+        super.getItemView(parseObject, v, parent);
+        ParseWallFeed wallPost = (ParseWallFeed) parseObject;
 
-        ParseWallFeed wallPost = (ParseWallFeed) parsePost;
         if (v == null) {
             if (wallPost.getParseObjectType().contentEquals("Picture")) {
                 v = View.inflate(getContext(), R.layout.picture_wall_feed, null);
@@ -88,7 +87,8 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParseObject> {
                 buttonLike = (Button) v.findViewById(R.id.buttonLike);
             }
         }
-        // ParseReview review = (ParseReview) parsePost;
+
+        buttonLike.setTag(parseObject);
 
         // TODO: MUNEEB REMOVED
         //ParsePicture review = (ParsePicture)parsePost;
@@ -109,27 +109,26 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParseObject> {
             // TextView textViewPost = (TextView) v.findViewById(R.id.textViewPost);
             // final Button buttonLike = (Button) v.findViewById(R.id.buttonLike);
             // username.setText(review.getFromName());
+
             // textViewPost.setText(review.getMessage());
             // buttonLike.setText(review.getLikes() + "");
-            // buttonLike.setTag(parsePost);
 
             buttonLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ParsePost parsePost = (ParsePost) buttonLike.getTag();
-                    Log.d(LOG_TAG, "ObjectId[" + parsePost.getObjectId() + "]");
-
-                    ParseQuery<ParsePost> query = ParseQuery.getQuery("Post");
-                    query.getInBackground(parsePost.getObjectId(), new GetCallback<ParsePost>() {
-                        public void done(ParsePost parsePost, ParseException e) {
+                    ParseWallFeed mParseWallFeed = (ParseWallFeed) buttonLike.getTag();
+                    Log.d(LOG_TAG, "ObjectId[" + mParseWallFeed.getObjectId() + "]");
+                    ParseQuery<ParseWallFeed> query = ParseQuery.getQuery("Wall");
+                    query.getInBackground(mParseWallFeed.getObjectId(), new GetCallback<ParseWallFeed>() {
+                        public void done(ParseWallFeed wallFeed, ParseException e) {
                             if (e == null) {
                                 ParseACL postACL = new ParseACL(ParseUser.getCurrentUser());
                                 postACL.setPublicReadAccess(true);
                                 postACL.setPublicWriteAccess(true);
-                                parsePost.setACL(postACL);
+                                wallFeed.setACL(postACL);
 
-                                parsePost.increment(ParseReview.LIKE);
-                                parsePost.saveInBackground(new SaveCallback() {
+                                wallFeed.increment(ParseReview.LIKE);
+                                wallFeed.saveInBackground(new SaveCallback() {
                                     @Override
                                     public void done(ParseException e) {
                                         if (e == null) {
@@ -149,10 +148,8 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParseObject> {
             comment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO Auto-generated method stub
                     ParseComment parseComment = new ParseComment();
-
-                    parseComment.put("postId", ParseObject.createWithoutData("POST", parsePost.getObjectId()));
+                    parseComment.put("wallId", ParseObject.createWithoutData("Wall", parseObject.getObjectId()));
                     parseComment.put("comment", "Jhonny Brovo... <)");
                     parseComment.saveInBackground(new SaveCallback() {
                         @Override
