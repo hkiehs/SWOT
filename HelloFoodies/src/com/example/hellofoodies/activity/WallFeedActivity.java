@@ -1,6 +1,6 @@
 package com.example.hellofoodies.activity;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import com.example.hellofoodies.R;
 import com.example.hellofoodies.utility.WallFeedAdapter;
 
-public class WallFeedActivity extends ListActivity {
+public class WallFeedActivity extends Activity {
 //	private static final String LOG_TAG = "WallFeedActivity";
 
     private WallFeedAdapter wallFeedAdapter;
@@ -18,8 +18,9 @@ public class WallFeedActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        WallFeedAdapter wallFeedAdapter = new WallFeedAdapter(this);
-        setListAdapter(wallFeedAdapter);
+        setContentView(R.layout.postpicture);
+//        WallFeedAdapter wallFeedAdapter = new WallFeedAdapter(this);
+//        setListAdapter(wallFeedAdapter);
     }
 
     @Override

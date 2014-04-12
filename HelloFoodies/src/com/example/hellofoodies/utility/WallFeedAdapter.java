@@ -162,7 +162,6 @@ public class WallFeedAdapter extends ParseQueryAdapter<ParseObject> {
                             } else {
                                 e.printStackTrace();
                             }
-
                         }
                     });
 
