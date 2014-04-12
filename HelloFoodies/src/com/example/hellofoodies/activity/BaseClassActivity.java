@@ -1,17 +1,13 @@
 package com.example.hellofoodies.activity;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.hellofoodies.R;
-import com.example.hellofoodies.parse.ParseReview;
 import com.example.hellofoodies.parse.ParsePost;
-import com.example.hellofoodies.utility.NewPostFragment;
 import com.parse.ParseObject;
 
 /*
@@ -37,9 +33,8 @@ public class BaseClassActivity extends Activity {
 		context = getApplicationContext();
 	}
 	
-	public static Context getContext()
-	{
-		return context;
+	public static Context getContext()	{
+		return context;		
 	}
 		
 	public void setParseObject(ParsePost parseObj) {

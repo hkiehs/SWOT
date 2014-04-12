@@ -6,8 +6,8 @@ import android.app.Application;
 
 import com.example.hellofoodies.parse.ParseComment;
 import com.example.hellofoodies.parse.ParsePicture;
-import com.example.hellofoodies.parse.ParseReview;
 import com.example.hellofoodies.parse.ParseRestaurant;
+import com.example.hellofoodies.parse.ParseReview;
 import com.example.hellofoodies.parse.ParseWallFeed;
 import com.parse.Parse;
 import com.parse.ParseACL;

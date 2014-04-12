@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,7 +93,7 @@ public class NewPictureFragment extends Fragment {
 				picture.setAuthor(ParseUser.getCurrentUser());
 
 				// Add the rating
-				picture.setTag(pictureTag.getSelectedItem().toString());
+				//picture.setTag(pictureTag.getSelectedItem().toString());
 
 				// If the user added a photo, that data will be
 				// added in the CameraFragment
@@ -150,7 +149,7 @@ public class NewPictureFragment extends Fragment {
 		Fragment cameraFragment = new CameraFragment();
 		FragmentTransaction transaction = getActivity().getFragmentManager()
 				.beginTransaction();
-		transaction.replace(R.id.fragmentContainer, cameraFragment);
+		//transaction.replace(R.id.fragmentContainer, cameraFragment);
 		transaction.addToBackStack("NewPictureFragment");
 		transaction.commit();
 	}

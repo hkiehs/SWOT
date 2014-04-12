@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 import com.example.hellofoodies.R;
 import com.example.hellofoodies.activity.BaseClassActivity;
-import com.example.hellofoodies.parse.ParseReview;
 import com.example.hellofoodies.parse.ParsePost;
 import com.parse.ParseException;
 import com.parse.ParseFile;
